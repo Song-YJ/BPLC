@@ -18,6 +18,10 @@
     <br><br>
     <h1>Vuex Test</h1>
     <h3>{{word}}</h3>
+
+    <br><br>
+    <h1>Axios Test</h1>
+    <button type="button" class="btn btn-primary" @click="axiostest()">Axios</button>
   </div>
 </template>
 
@@ -25,13 +29,24 @@
 import { defineComponent } from 'vue';
 import { useStore } from 'vuex'
 import { key } from '../store'
+import http from '@/api/http'
 
 export default defineComponent({
   name: 'Aboutview',
   computed: {
     word(){
       const store = useStore(key);
-      return store.state.word //여기 $store 빨간 줄 무시 괜찮음
+      return store.state.word
+    }
+  },
+  methods: {
+    axiostest(){
+      http.get('/axiostest?test=1234')
+      .then(response => {
+        console.log(response);
+      }).catch(error => {
+        console.log(error);
+      })
     }
   }
 });
