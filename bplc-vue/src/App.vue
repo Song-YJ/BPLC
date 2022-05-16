@@ -1,30 +1,23 @@
+/**
+	* @fileName  : App.vue
+	* @explain : bplc vue project App
+	* @author : 송유진 , yoyo6433@naver.com, 배민경, bmg1203@naver.com, 박혜원, phw5883@naver.com
+	* 부가 설명 : bplc vue project의 보여지는 page
+	*/
+
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <Header bgcolor=''></Header>
+  <router-view></router-view>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script lang="ts">
+  import { defineComponent } from 'vue';
+  import Header from '@/components/layout/Header.vue';
 
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+  export default defineComponent({
+    name: 'App',
+    components:{
+      Header
+    },
+  });
+</script>
