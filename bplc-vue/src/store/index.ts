@@ -10,8 +10,8 @@ import { createStore, Store } from 'vuex'
 
 // define your typings for the store state
 export interface State {
-  word: string,
-  headerbg: string
+  //entertain
+  entertainlistnum : Number
 }
 
 // define injection key
@@ -19,12 +19,16 @@ export const key: InjectionKey<Store<State>> = Symbol()
 
 export const store = createStore<State>({
   state: {
-    word: "Hello Vuex!",
-    headerbg: "whitebg"
+    //entertain
+    entertainlistnum: 100
   },
   getters: {
   },
   mutations: {
+    //entertain
+    chgentertainlistnum: function(state, payload){
+      state.entertainlistnum = payload.value;
+    }
   },
   actions: {
   },

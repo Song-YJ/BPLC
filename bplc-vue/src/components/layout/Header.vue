@@ -8,7 +8,7 @@
 <template>
   <header>
     <div class="menu_wrap">
-      <ul class="dept_1" :class="bgcolor">
+      <ul class="dept_1">
         <li v-for="item in menus" :key="item.name">
           <a href="#">{{item.name}}</a>
           <ul class="dept_2">
@@ -32,19 +32,10 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { useStore } from 'vuex';
-import { key } from '@/store';
 
 export default defineComponent({
   name: 'HelloWorld',
-  props:{
-    'bgcolor': String
-  },
   computed: {
-    bgcolor(){
-      const store = useStore(key);
-      return store.state.headerbg
-    }
   },
   data(){
     return{
@@ -144,15 +135,14 @@ a:hover{
   color: rgb(90, 90, 90);
 }
 .menu_wrap .dept_1{
+  z-index: 10;
+
   width: 100%;
   font-size: 0;
-  text-align: right;
+  text-align: center;
   position: fixed;
 
   background: white;
-}
-.menu_wrap .nonebg{
-  background: rgba(0,0,0,0);
 }
 .menu_wrap .dept_1 > li{
   display: inline-block;
@@ -193,11 +183,10 @@ a:hover{
   border-radius: 12px 12px 12px 12px;
 
   height: 40px;
-  display: inline-block;
 
   margin-top:20px;
-  margin-left:200px;
-  margin-right: 50px;
+  float: right;
+  margin-right: 2vw;
 
   padding: 3px;
 }

@@ -32,13 +32,13 @@ export default defineComponent({
   width: 100%;
 }
 .contents_back .contents_wrap{
-    padding: 90px 70px 0px 70px;
+    padding: 90px 70px 20px 70px;
 
     text-align: center;
 }
 .contents_back .contents_wrap .contents{
     width: 100%;
-    height: 100vh; /* 실제 content를 넣고 난 후에는 해당 항목 삭제하기 */
+    height: auto;
     background: white;
 }
 </style>

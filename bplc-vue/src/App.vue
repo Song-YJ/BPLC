@@ -6,8 +6,8 @@
 	*/
 
 <template>
-  <Header bgcolor=''></Header>
-  <router-view></router-view>
+  <Header></Header>
+  <router-view :key="$route.fullPath"></router-view>
 </template>
 
 <script lang="ts">

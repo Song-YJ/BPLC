@@ -9,6 +9,8 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
 const HomeView = () => import(/* webpackChunkName: "home" */ '../views/HomeView.vue')
 const ExhibitionView = () => import(/* webpackChunkName: "exhibition" */ '../views/ExhibitionView.vue')
+const EntertainmentView = () => import(/* webpackChunkName: "entertainment" */ '../views/EntertainmentView.vue')
+const EntertainmentDetailView = () => import(/* webpackChunkName: "entertainmentdetail*/ '../views/EntertainmentDetailView.vue')
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -65,9 +67,26 @@ const routes: Array<RouteRecordRaw> = [
     component: HomeView
   },
   {
-    path: '/tripsite/entertainment',
+    path: '/tripsite/entertainment/',
     name: 'EntertainmentRoute',
-    component: HomeView
+    redirect: {name:'EntertainmentRouteParams', params:{gernename:'all', page:1}}
+  },
+  {
+    path: '/tripsite/entertainment/:gernename/:page',
+    name: 'EntertainmentRouteParams',
+    component: EntertainmentView,
+    props: true
+  },
+  {
+    path: '/tripsite/entertainmentdetail/',
+    name: 'EntertainmentDetailNoneParamsRoute',
+    redirect: {name:'EntertainmentRouteParams', params:{gernename:'all', page:1}}
+  },
+  {
+    path: '/tripsite/entertainmentdetail/:id',
+    name: 'EntertainmentDetailRoute',
+    component: EntertainmentDetailView,
+    props: true
   },
   {
     path: '/tripsite/hotel',
