@@ -66,6 +66,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'FoodRoute',
     component: HomeView
   },
+
   {
     path: '/tripsite/entertainment/',
     name: 'EntertainmentRoute',
@@ -88,6 +89,7 @@ const routes: Array<RouteRecordRaw> = [
     component: EntertainmentDetailView,
     props: true
   },
+  
   {
     path: '/tripsite/hotel',
     name: 'HotelRoute',

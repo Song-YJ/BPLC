@@ -6,13 +6,13 @@
 	*/
 
 <template>
-    <div class="card" v-for="listitem in entertainList" :key="listitem.id">
-        <img :src="listitem.photopath" class="card-img" alt="loading failed">
-        <div class="card-img-overlay">
-            <p class="card-title">{{listitem.name}}</p>
-            <pre class="card-text">{{listitem.address}}</pre>
-        </div>
+  <div class="card" v-for="listitem in entertainList" :key="listitem.id" @click="detailClick(listitem.id)">
+    <img :src="listitem.photopath" class="card-img" alt="loading failed">
+    <div class="card-img-overlay">
+        <p class="card-title">{{listitem.name}}</p>
+        <pre class="card-text">{{listitem.address}}</pre>
     </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -78,6 +78,9 @@ export default defineComponent({
             photopath: require("@/assets/entertainment/songdo_cablecar_pic" + "/thumbnail.jpg")
           }
       ]
+    },
+    detailClick: function(idnum:Number){
+      this.$router.push({name: 'EntertainmentDetailRoute', params: {'id':Number(idnum)}});
     }
   },
   
@@ -86,11 +89,9 @@ export default defineComponent({
 
 <style scoped>
 .card{
-    width:20%;
+    width:80%;
     height:300px;
-    margin: 2% 30px 2% 30px;
-
-    display: inline-block;
+    margin : 2% auto 2% auto;
 
     border: none;
 
