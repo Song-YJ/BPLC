@@ -11,6 +11,8 @@ const HomeView = () => import(/* webpackChunkName: "home" */ '../views/HomeView.
 const ExhibitionView = () => import(/* webpackChunkName: "exhibition" */ '../views/ExhibitionView.vue')
 const EntertainmentView = () => import(/* webpackChunkName: "entertainment" */ '../views/EntertainmentView.vue')
 const EntertainmentDetailView = () => import(/* webpackChunkName: "entertainmentdetail*/ '../views/EntertainmentDetailView.vue')
+const HotelView = () => import(/* webpackChunkName: hotel" */ '../views/HotelView.vue')
+const HotelDetailView = () => import(/*webpackChunkName: hoteldetail*/ '../views/HotelDetailView.vue')
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -91,9 +93,24 @@ const routes: Array<RouteRecordRaw> = [
   },
   
   {
-    path: '/tripsite/hotel',
+    path: '/tripsite/hotel/',
     name: 'HotelRoute',
-    component: HomeView
+    redirect: {name:'HotelRouteParams', params:{gernename:'all', page:1}}
+  },
+  {
+    path: '/tripsite/hotel/:gernename/:page',
+    name: 'HotelRouteParams',
+    component: HotelView
+  },
+  {
+    path: '/tripsite/hoteldetail/',
+    name: 'HotelDetailNoneParamsRoute',
+    redirect: {name:'HotelRouteParams', params:{gernename:'all', page:1}}
+  },
+  {
+    path: '/tripsite/hoteldetail/:id',
+    name: 'HotelDetailRoute',
+    component: HotelDetailView
   },
 
   //여행 정보
@@ -131,6 +148,9 @@ const routes: Array<RouteRecordRaw> = [
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
+  scrollBehavior(to, from, savedPosition){
+    return {top: 0} //page 이동 시 항상 scroll을 가장 위에
+  },
   routes
 })
 

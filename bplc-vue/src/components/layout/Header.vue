@@ -9,6 +9,7 @@
   <header>
     <div class="menu_wrap">
       <ul class="dept_1">
+        <img class="logoimg" src="@/assets/logo.png" @click="logoclick()"/> 
         <li v-for="item in menus" :key="item.name">
           <a href="#">{{item.name}}</a>
           <ul class="dept_2">
@@ -35,7 +36,10 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'HelloWorld',
-  computed: {
+  methods: {
+    logoclick: function(){
+      this.$router.push({name: 'home'})
+    }
   },
   data(){
     return{
@@ -149,8 +153,8 @@ a:hover{
   vertical-align: top;
   position: relative;
   
-  margin-top:20px;
-  padding-bottom: 20px;
+  margin-top:30px;
+  padding-bottom: 25px;
   width: 140px;
 
   font-size: 16pt;
@@ -222,5 +226,19 @@ a:hover{
     border-top: 5px solid black;
     display: block;
   }
+}
+
+.menu_wrap .dept_1 .logoimg{
+  width: 7%;
+  height: 5%;
+  object-fit: fill;
+
+  float: left;
+
+  margin: 10px 0 10px 7%;
+}
+
+.menu_wrap .dept_1 .logoimg:hover{
+  cursor: pointer;
 }
 </style>
