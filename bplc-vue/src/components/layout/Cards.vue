@@ -35,15 +35,29 @@ export default defineComponent({
           }]
       }
   },
-  mounted: function(){
-    this.getLists()
+  mounted(){
+    this.getLists();
+    while(this.lists.length == 0){
+      this.getLists();
+    }
   },
   methods:{
     getLists: function(){
 
       if(this.listinfo !== undefined){
-        this.lists = this.listinfo.lists;
+        let curpage = Number(this.$route.params.page);
+        console.log("page:" + curpage);
+        
+        this.lists.pop();
+
+        for(let i = (curpage-1)*8; i<(curpage-1)*8+8; i++){
+          if(i < this.listinfo.lists.length){
+            this.lists.push(this.listinfo.lists[i]);
+          }
+        }
       }
+
+      console.log(this.lists);
 
       this.lists.forEach(element => {
         if(this.listinfo !== undefined){

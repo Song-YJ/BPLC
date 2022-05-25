@@ -35,7 +35,7 @@ export default defineComponent({
       ContentsHead, Cards, Catergory, Pagination, Classification
   },
   methods:{
-      getListInfo: function(){
+      getListInfo: async function(){
           let listinfo = {
               totallistnum : 0,
               category: "entertainment",
@@ -44,76 +44,21 @@ export default defineComponent({
 
           //axios
           const axios = require('axios').default;
-          axios.get('/user', {
+          await axios.get('/dao/entertainment', {
               params: {
-                table: 'enetertainment',
-                gernename: String(this.$route.params.gernename),
-                page: Number(this.$route.params.page)
+                gernename: String(this.$route.params.gernename)
               }
           })
           .then(function (response) {
               console.log(response);
-              listinfo.totallistnum = response.length;
-              listinfo.lists = response;
+              listinfo.totallistnum = response.totallistnum;
+              listinfo.lists = response.lists;
+
+              return listinfo
           })
           .catch(function (error) {
               console.log(error);
-          })
-          .then(function () {
           });  
-
-        /*
-          const listinfo = {
-              totallistnum: 7,
-              category:"entertainment",
-              lists: [
-                {
-                    id: "e1",
-                    name: "부산시청",
-                    explanation: "부산 연제구 중앙대로 1001\n부산광역시청",
-                    photopath: "songdo_cablecar"
-                },
-                {
-                    id: "e2",
-                    name: "부산시청",
-                    explanation: "부산 연제구 중앙대로 1001\n부산광역시청",
-                    photopath: "songdo_cablecar"
-                },
-                {
-                    id: "e3",
-                    name: "부산시청",
-                    explanation: "부산 연제구 중앙대로 1001\n부산광역시청",
-                    photopath: "songdo_cablecar"
-                },
-                {
-                    id: "e4",
-                    name: "부산시청",
-                    explanation: "부산 연제구 중앙대로 1001\n부산광역시청",
-                    photopath: "songdo_cablecar"
-                },
-                {
-                    id: "e5",
-                    name: "부산시청",
-                    explanation: "부산 연제구 중앙대로 1001\n부산광역시청",
-                    photopath: "songdo_cablecar"
-                },
-                {
-                    id: "e6",
-                    name: "부산시청",
-                    explanation: "부산 연제구 중앙대로 1001\n부산광역시청",
-                    photopath: "songdo_cablecar"
-                },
-                {
-                    id: "e7",
-                    name: "부산시청",
-                    explanation: "부산 연제구 중앙대로 1001\n부산광역시청",
-                    photopath: "songdo_cablecar"
-                }
-              ]
-          }
-        */
-
-          return listinfo
       },
       getClassificationInfo: function(){
           let cinfo = [
@@ -144,7 +89,7 @@ export default defineComponent({
 .contents_back{
   background: white;
 
-  background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ),url(@/assets/entertainment/songdo_cablecar.jpg);
+  background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ),url(@/assets/entertainment/haeundae_bluelinepark/thumbnail.png);
   background-size: 100vw;
   background-repeat: no-repeat;
   background-attachment: fixed;

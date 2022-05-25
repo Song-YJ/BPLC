@@ -124,7 +124,7 @@ export default defineComponent({
 .contents_back{
   background: white;
 
-  background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ),url(@/assets/hotel/hotel.png);
+  background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ),url(@/assets/hotel/busan_signiel/thumbnail.jpeg);
   background-size: 100vw;
   background-repeat: no-repeat;
   background-attachment: fixed;
