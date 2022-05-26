@@ -33,13 +33,14 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'entertainPagination',
   props:{
-      totallistnum:Number,
+      listinfo:Object,
       routename:String
   },
   mounted(){
-      this.listnum = this.totallistnum as number;
-
-      this.paging();
+      if(this.listinfo !== undefined){
+        this.listnum = this.listinfo.totallistnum as number;
+        this.paging();
+      }
   },
   data(){
       return {

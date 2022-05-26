@@ -13,9 +13,9 @@
                 <Catergory MainC="여행지" SubC="엔터테인먼트"></Catergory>
                 <Classification :classificationObject="getClassificationInfo()"></Classification>
                 <div class="card_container">
-                    <Cards :listinfo="getListInfo()" routename="EntertainmentDetailRoute"></Cards>
+                    <Cards :listinfo="listinfo" routename="EntertainmentDetailRoute"></Cards>
                 </div>
-                <Pagination :totallistnum="getListInfo().totallistnum"
+                <Pagination :listinfo="listinfo"
                 routename="EntertainmentRouteParams"></Pagination>
             </div>
         </div>
@@ -34,86 +34,38 @@ export default defineComponent({
   components:{
       ContentsHead, Cards, Catergory, Pagination, Classification
   },
+  data(){
+      return{
+          listinfo : {}
+      }
+  },
+  mounted(){
+      this.listinfo = this.setListInfo();
+  },
   methods:{
-      getListInfo: function(){
+      setListInfo: function(){
           let listinfo = {
-              totallistnum : 0,
+              totallistnum:0,
               category: "entertainment",
-              lists: []
+              lists:[]
           };
 
           //axios
           const axios = require('axios').default;
-          axios.get('/user', {
+          axios.get('/dao/entertainment', {
               params: {
-                table: 'enetertainment',
-                gernename: String(this.$route.params.gernename),
-                page: Number(this.$route.params.page)
+                gernename: String(this.$route.params.gernename)
               }
           })
           .then(function (response) {
-              console.log(response);
-              listinfo.totallistnum = response.length;
-              listinfo.lists = response;
+              listinfo.totallistnum = response.data.totallistnum;
+              listinfo.lists = response.data.lists;
           })
           .catch(function (error) {
               console.log(error);
-          })
-          .then(function () {
           });  
 
-        /*
-          const listinfo = {
-              totallistnum: 7,
-              category:"entertainment",
-              lists: [
-                {
-                    id: "e1",
-                    name: "부산시청",
-                    explanation: "부산 연제구 중앙대로 1001\n부산광역시청",
-                    photopath: "songdo_cablecar"
-                },
-                {
-                    id: "e2",
-                    name: "부산시청",
-                    explanation: "부산 연제구 중앙대로 1001\n부산광역시청",
-                    photopath: "songdo_cablecar"
-                },
-                {
-                    id: "e3",
-                    name: "부산시청",
-                    explanation: "부산 연제구 중앙대로 1001\n부산광역시청",
-                    photopath: "songdo_cablecar"
-                },
-                {
-                    id: "e4",
-                    name: "부산시청",
-                    explanation: "부산 연제구 중앙대로 1001\n부산광역시청",
-                    photopath: "songdo_cablecar"
-                },
-                {
-                    id: "e5",
-                    name: "부산시청",
-                    explanation: "부산 연제구 중앙대로 1001\n부산광역시청",
-                    photopath: "songdo_cablecar"
-                },
-                {
-                    id: "e6",
-                    name: "부산시청",
-                    explanation: "부산 연제구 중앙대로 1001\n부산광역시청",
-                    photopath: "songdo_cablecar"
-                },
-                {
-                    id: "e7",
-                    name: "부산시청",
-                    explanation: "부산 연제구 중앙대로 1001\n부산광역시청",
-                    photopath: "songdo_cablecar"
-                }
-              ]
-          }
-        */
-
-          return listinfo
+          return listinfo;
       },
       getClassificationInfo: function(){
           let cinfo = [
@@ -144,7 +96,7 @@ export default defineComponent({
 .contents_back{
   background: white;
 
-  background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ),url(@/assets/entertainment/songdo_cablecar.jpg);
+  background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ),url(@/assets/entertainment/haeundae_bluelinepark/thumbnail.png);
   background-size: 100vw;
   background-repeat: no-repeat;
   background-attachment: fixed;

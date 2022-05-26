@@ -46,4 +46,8 @@ export default defineComponent({
 .contents_head .headname{
     font-size: 55pt;
 }
+
+.contents_head .headdescription{
+    font-size: 15pt;
+}
 </style>
