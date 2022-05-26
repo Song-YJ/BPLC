@@ -13,9 +13,9 @@
                 <Catergory MainC="여행지" SubC="엔터테인먼트"></Catergory>
                 <Classification :classificationObject="getClassificationInfo()"></Classification>
                 <div class="card_container">
-                    <Cards :listinfo="getListInfo()" routename="EntertainmentDetailRoute"></Cards>
+                    <Cards :listinfo="listinfo" routename="EntertainmentDetailRoute"></Cards>
                 </div>
-                <Pagination :totallistnum="getListInfo().totallistnum"
+                <Pagination :listinfo="listinfo"
                 routename="EntertainmentRouteParams"></Pagination>
             </div>
         </div>
@@ -34,31 +34,38 @@ export default defineComponent({
   components:{
       ContentsHead, Cards, Catergory, Pagination, Classification
   },
+  data(){
+      return{
+          listinfo : {}
+      }
+  },
+  mounted(){
+      this.listinfo = this.setListInfo();
+  },
   methods:{
-      getListInfo: async function(){
+      setListInfo: function(){
           let listinfo = {
-              totallistnum : 0,
+              totallistnum:0,
               category: "entertainment",
-              lists: []
+              lists:[]
           };
 
           //axios
           const axios = require('axios').default;
-          await axios.get('/dao/entertainment', {
+          axios.get('/dao/entertainment', {
               params: {
                 gernename: String(this.$route.params.gernename)
               }
           })
           .then(function (response) {
-              console.log(response);
-              listinfo.totallistnum = response.totallistnum;
-              listinfo.lists = response.lists;
-
-              return listinfo
+              listinfo.totallistnum = response.data.totallistnum;
+              listinfo.lists = response.data.lists;
           })
           .catch(function (error) {
               console.log(error);
           });  
+
+          return listinfo;
       },
       getClassificationInfo: function(){
           let cinfo = [

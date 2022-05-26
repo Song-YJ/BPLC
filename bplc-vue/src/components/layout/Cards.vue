@@ -36,28 +36,27 @@ export default defineComponent({
       }
   },
   mounted(){
+    this.lists.pop();
     this.getLists();
-    while(this.lists.length == 0){
-      this.getLists();
-    }
   },
   methods:{
     getLists: function(){
 
+      console.log(this.listinfo);
+
       if(this.listinfo !== undefined){
         let curpage = Number(this.$route.params.page);
-        console.log("page:" + curpage);
-        
-        this.lists.pop();
+
+        console.log(this.listinfo.lists);
 
         for(let i = (curpage-1)*8; i<(curpage-1)*8+8; i++){
           if(i < this.listinfo.lists.length){
             this.lists.push(this.listinfo.lists[i]);
           }
         }
-      }
 
-      console.log(this.lists);
+        console.log(this.lists);
+      }
 
       this.lists.forEach(element => {
         if(this.listinfo !== undefined){

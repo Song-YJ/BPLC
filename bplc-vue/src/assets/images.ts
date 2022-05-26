@@ -204,7 +204,7 @@ const imagespath = {
         yongkungsa: {
             thumbnail: require("@/assets/sight/yongkungsa/thumbnail.jpg"),
             pictures:[]
-        }
+        },
     }
 }
 
