@@ -11,8 +11,8 @@
             <ContentsHead headname="호텔" headdescription="부산의 숙박"></ContentsHead>
             <div class="contents">
                 <Category MainC="여행지" SubC="호텔"></Category>
-                <DetailHead category="호텔" :selecteddata="Object(getSelectInfo())"></DetailHead>
-                <DetailPhotos :selecteddata="Object(getSelectInfo())"></DetailPhotos>
+                <DetailHead category="호텔" :selecteddata="selecteddatainfo"></DetailHead>
+                <DetailPhotos :selecteddata="selecteddatainfo"></DetailPhotos>
             </div>
         </div>
     </div>
@@ -32,36 +32,44 @@ export default defineComponent({
   },
   data(){
       return{
-
-      }
-  },
-  methods:{
-      getSelectInfo: function(){
-          let selectedid = this.$route.params.id;
-
-          //id와 axios로 data 가져오기
-          
-          let selecteddata = {
-            id: "h1",
-            name: "파라다이스 호텔",
-            address: "부산 해운대구\n해운대해변로 296",
-            photopath: "paradise",
-            opertime: "00:00 ~ 23:59",
-            phone: "010-0000-0000",
-            homepage: "http://google.com",
-            holiday: "화요일",
-            entryfee: "무료",
-            explanation:"부산 해운대의\n파라다이스 호텔"
-          }
-
-          selecteddata.photopath = imagepath.hotel[selecteddata.photopath];
-
-          return selecteddata;
+          selecteddatainfo: {}
       }
   },
   mounted(){
-      
-      
+      this.getSelectInfo();
+  },
+  methods:{
+      getSelectInfo: async function(){
+          let selectedid = this.$route.params.id;
+          let sdata = {
+              detail: "",
+              explanation: "",
+              holiday: "",
+              homepage: "",
+              id: "",
+              name: "",
+              oper_time: "",
+              phone: "",
+              photopath: "",
+              entryfee: ""
+          };
+
+          const axios = require('axios').default;
+          await axios.get('/dao/detail/hotel', {
+              params: {
+                id: selectedid
+              }
+          })
+          .then(function (response) {
+              sdata = response.data;
+              sdata.photopath = imagepath.entertainment[sdata.photopath];
+          })
+          .catch(function (error) {
+              console.log(error);
+          });
+
+          this.selecteddatainfo = sdata;
+      }
   }
   
 });

@@ -123,4 +123,13 @@ export default defineComponent({
     justify-content: center;
     margin-top: 2%;
 }
+
+.page-item.active .page-link{
+    background: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.page-link{
+    color: #0d6efd;
+}
 </style>

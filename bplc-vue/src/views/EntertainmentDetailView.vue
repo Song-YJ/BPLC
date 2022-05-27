@@ -11,8 +11,8 @@
             <ContentsHead headname="엔터테인먼트" headdescription="부산의 즐길거리"></ContentsHead>
             <div class="contents">
                 <Category MainC="여행지" SubC="엔터테인먼트"></Category>
-                <DetailHead category="엔터테인먼트" :selecteddata="Object(getSelectInfo())"></DetailHead>
-                <DetailDescription :selecteddata="Object(getSelectInfo())"></DetailDescription>
+                <DetailHead category="엔터테인먼트" :selecteddata="selecteddatainfo"></DetailHead>
+                <DetailDescription :selecteddata="selecteddatainfo"></DetailDescription>
             </div>
         </div>
     </div>
@@ -32,36 +32,44 @@ export default defineComponent({
   },
   data(){
       return{
-
-      }
-  },
-  methods:{
-      getSelectInfo: function(){
-          let selectedid = this.$route.params.id;
-
-          //id와 axios로 data 가져오기
-          
-          let selecteddata = {
-            id: "e1",
-            name: "부산시청",
-            address: "부산 연제구 중앙대로 1001\n부산광역시청",
-            photopath: "songdo_cablecar",
-            opertime: "00:00 ~ 23:59",
-            phone: "010-0000-0000",
-            homepage: "http://naver.com",
-            holiday: "화요일",
-            entryfee: "무료",
-            explanation:"부산의 각종 민원을 처리하는\n부산시청"
-          }
-
-          selecteddata.photopath = imagepath.entertainment[selecteddata.photopath];
-
-          return selecteddata;
+          selecteddatainfo : {}
       }
   },
   mounted(){
-      
-      
+      this.getSelectInfo();
+  },
+  methods:{
+      getSelectInfo: async function(){
+          let selectedid = this.$route.params.id;
+          let sdata = {
+              detail: "",
+              explanation: "",
+              holiday: "",
+              homepage: "",
+              id: "",
+              name: "",
+              oper_time: "",
+              phone: "",
+              photopath: "",
+              entryfee: ""
+          };
+
+          const axios = require('axios').default;
+          await axios.get('/dao/detail/entertainment', {
+              params: {
+                id: selectedid
+              }
+          })
+          .then(function (response) {
+              sdata = response.data;
+              sdata.photopath = imagepath.entertainment[sdata.photopath];
+          })
+          .catch(function (error) {
+              console.log(error);
+          });
+
+          this.selecteddatainfo = sdata;
+      }
   }
   
 });

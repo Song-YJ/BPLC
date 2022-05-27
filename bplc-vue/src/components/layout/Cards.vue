@@ -10,7 +10,7 @@
     <img :src="listitem.photopath.thumbnail" class="card-img" alt="loading failed">
     <div class="card-img-overlay">
         <p class="card-title">{{listitem.name}}</p>
-        <pre class="card-text">{{listitem.explanation}}</pre>
+        <p class="card-text">{{listitem.explanation}}</p>
     </div>
   </div>
 </template>
@@ -42,20 +42,14 @@ export default defineComponent({
   methods:{
     getLists: function(){
 
-      console.log(this.listinfo);
-
       if(this.listinfo !== undefined){
         let curpage = Number(this.$route.params.page);
-
-        console.log(this.listinfo.lists);
 
         for(let i = (curpage-1)*8; i<(curpage-1)*8+8; i++){
           if(i < this.listinfo.lists.length){
             this.lists.push(this.listinfo.lists[i]);
           }
         }
-
-        console.log(this.lists);
       }
 
       this.lists.forEach(element => {

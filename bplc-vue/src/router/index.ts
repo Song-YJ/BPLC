@@ -149,6 +149,9 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   scrollBehavior(to, from, savedPosition){
+    if(savedPosition){
+      return savedPosition
+    }
     return {top: 0} //page 이동 시 항상 scroll을 가장 위에
   },
   routes
