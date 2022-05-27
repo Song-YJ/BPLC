@@ -1,2 +1,0 @@
-"use strict";(self["webpackChunkbplc_vue"]=self["webpackChunkbplc_vue"]||[]).push([[177],{8527:function(e,n,u){function r(e,n,u,r,c,t){return null}u.r(n),u.d(n,{default:function(){return f}});var c=u(6252),t=(0,c.aZ)({name:"HomeView"}),a=u(3744);const l=(0,a.Z)(t,[["render",r]]);var f=l}}]);
-//# sourceMappingURL=home.e97eee0f.js.map

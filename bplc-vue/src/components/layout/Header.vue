@@ -29,13 +29,19 @@
       </ul>
     </div>
   </header>
+
+  <ScrollTop></ScrollTop>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import ScrollTop from '@/components/layout/ScrollTop.vue';
 
 export default defineComponent({
   name: 'HelloWorld',
+  components:{
+    ScrollTop
+  },
   methods: {
     logoclick: function(){
       this.$router.push({name: 'home'})
@@ -240,5 +246,24 @@ a:hover{
 
 .menu_wrap .dept_1 .logoimg:hover{
   cursor: pointer;
+}
+
+.scrolltop .scrolltopimg {
+  width: 100%;
+  height: 100%;
+}
+
+.scrolltop {
+  z-index: 10;
+
+  scroll-behavior: smooth;
+
+  position: fixed;
+  right: 0.35%;
+  bottom: 2%;
+  width: 55px;
+  height: 55px;
+
+  display: var(--scrolltopdisplay);
 }
 </style>

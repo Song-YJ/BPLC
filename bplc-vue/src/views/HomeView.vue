@@ -1,4 +1,4 @@
-<template>
+<template @scroll.passive=false>
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -38,6 +38,9 @@ export default defineComponent({
 #carouselExampleControls {
   padding: 90px 0px 0px 0px;
   width: 100%;
+}
+
+template {
   overflow: hidden;
 }
 </style>
