@@ -12,11 +12,13 @@
             <div class="contents">
                 <Catergory MainC="여행지" SubC="호텔"></Catergory>
                 <Classification :classificationObject="getClassificationInfo()"></Classification>
-                <div class="card_container">
-                    <Cards :listinfo="getListInfo()" routename="HotelDetailRoute"></Cards>
+                <div class="card_container" v-if="listinfo.totallistnum > 0">
+                    <Cards :listinfo="listinfo" routename="HotelDetailRoute"></Cards>
                 </div>
-                <Pagination :totallistnum="getListInfo().totallistnum"
-                routename="HotelRouteParams"></Pagination>
+                <div v-if="listinfo.totallistnum > 0">
+                    <Pagination :totallistnum="listinfo"
+                    routename="HotelRouteParams"></Pagination>
+                </div>
             </div>
         </div>
     </div>
@@ -34,61 +36,39 @@ export default defineComponent({
   components:{
       ContentsHead, Cards, Catergory, Pagination, Classification
   },
-  methods:{
-      getListInfo: function(){
-          //console.log(String(this.$route.params.gernename))
-          //console.log(Number(this.$route.params.page))
-          //axios
-
-          const listinfo = {
-              totallistnum: 7,
-              category:"hotel",
-              lists: [
-                {
-                    id: "h1",
-                    name: "파라다이스 호텔",
-                    explanation: "부산 해운대구\n해운대해변로 296",
-                    photopath: "paradise"
-                },
-                {
-                    id: "h2",
-                    name: "파라다이스 호텔",
-                    explanation: "부산 해운대구\n해운대해변로 296",
-                    photopath: "paradise"
-                },
-                {
-                    id: "h3",
-                    name: "파라다이스 호텔",
-                    explanation: "부산 해운대구\n해운대해변로 296",
-                    photopath: "paradise"
-                },
-                {
-                    id: "h4",
-                    name: "파라다이스 호텔",
-                    explanation: "부산 해운대구\n해운대해변로 296",
-                    photopath: "paradise"
-                },
-                {
-                    id: "h5",
-                    name: "파라다이스 호텔",
-                    explanation: "부산 해운대구\n해운대해변로 296",
-                    photopath: "paradise"
-                },
-                {
-                    id: "h6",
-                    name: "파라다이스 호텔",
-                    explanation: "부산 해운대구\n해운대해변로 296",
-                    photopath: "paradise"
-                },
-                {
-                    id: "h7",
-                    name: "파라다이스 호텔",
-                    explanation: "부산 해운대\n해운대해변로 296",
-                    photopath: "paradise"
-                }
-              ]
+  data(){
+      return{
+          listinfo: {
+              totallistnum: 0,
+              category: "hotel",
+              lists: []
           }
-          return listinfo
+      }
+  },
+  methods:{
+      getListInfo: async function(){
+
+          let tln = 0;
+          let ls = [];
+
+          //axios
+          const axios = require('axios').default;
+          await axios.get('/dao/hotel', {
+              params: {
+                gernename: String(this.$route.params.gernename)
+              }
+          })
+          .then(function (response) {
+              tln = response.data.totallistnum;
+              ls = response.data.lists;
+          })
+          .catch(function (error) {
+              console.log(error);
+          });
+
+          this.listinfo.totallistnum = tln;
+          this.listinfo.lists = ls;
+
       },
       getClassificationInfo: function(){
           let cinfo = [

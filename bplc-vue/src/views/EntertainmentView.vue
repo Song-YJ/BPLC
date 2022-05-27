@@ -12,11 +12,13 @@
             <div class="contents">
                 <Catergory MainC="여행지" SubC="엔터테인먼트"></Catergory>
                 <Classification :classificationObject="getClassificationInfo()"></Classification>
-                <div class="card_container">
+                <div class="card_container" v-if="listinfo.totallistnum > 0">
                     <Cards :listinfo="listinfo" routename="EntertainmentDetailRoute"></Cards>
                 </div>
-                <Pagination :listinfo="listinfo"
-                routename="EntertainmentRouteParams"></Pagination>
+                <div v-if="listinfo.totallistnum > 0">
+                    <Pagination :listinfo="listinfo"
+                    routename="EntertainmentRouteParams"></Pagination>
+                </div>
             </div>
         </div>
     </div>
@@ -35,37 +37,39 @@ export default defineComponent({
       ContentsHead, Cards, Catergory, Pagination, Classification
   },
   data(){
-      return{
-          listinfo : {}
-      }
+     return{
+         listinfo: {
+             totallistnum: 0,
+             category: "entertainment",
+             lists: []
+         }
+     }
   },
   mounted(){
-      this.listinfo = this.setListInfo();
+      this.getListInfo();
   },
   methods:{
-      setListInfo: function(){
-          let listinfo = {
-              totallistnum:0,
-              category: "entertainment",
-              lists:[]
-          };
+      getListInfo: async function(){
+          let tln = 0;
+          let ls = [];
 
           //axios
           const axios = require('axios').default;
-          axios.get('/dao/entertainment', {
+          await axios.get('/dao/entertainment', {
               params: {
                 gernename: String(this.$route.params.gernename)
               }
           })
           .then(function (response) {
-              listinfo.totallistnum = response.data.totallistnum;
-              listinfo.lists = response.data.lists;
+              tln = response.data.totallistnum;
+              ls = response.data.lists;
           })
           .catch(function (error) {
               console.log(error);
-          });  
+          });
 
-          return listinfo;
+          this.listinfo.totallistnum = tln;
+          this.listinfo.lists = ls;
       },
       getClassificationInfo: function(){
           let cinfo = [

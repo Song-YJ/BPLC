@@ -23,9 +23,33 @@ public class entertainmentDAO {
 
     public List<entertainmentdetail> getSummaryList(String gernename){
         return jdbctemplate.query(
-                "SELECT id, name, address, photo_path FROM entertainment WHERE gernename = ?",
+                "SELECT id, name, address, photo_path FROM entertainment WHERE entertainment.type = ?",
                 summaryRowmapper(), gernename
         );
+    }
+
+    public entertainmentdetail getContentDetail(String id){
+        return jdbctemplate.queryForObject(
+                "SELECT * FROM entertainment WHERE id = ?",
+                detailRowmapper(), id
+        );
+    }
+
+    private RowMapper<entertainmentdetail> detailRowmapper() {
+        return(rs, rowNum) -> {
+            entertainmentdetail object = new entertainmentdetail();
+            object.setId(rs.getString("id"));
+            object.setName(rs.getString("name"));
+            object.setExplanation(rs.getString("address"));
+            object.setPhotopath(rs.getString("photo_path"));
+            object.setPhone(rs.getString("phone"));
+            object.setOper_time(rs.getString("oper_time"));
+            object.setDetail(rs.getString("detail"));
+            object.setHoliday(rs.getString("holiday"));
+            object.setHomepage(rs.getString("homepage"));
+
+            return object;
+        };
     }
 
     private RowMapper<entertainmentdetail> summaryRowmapper(){
@@ -33,8 +57,9 @@ public class entertainmentDAO {
             entertainmentdetail object = new entertainmentdetail();
             object.setId(rs.getString("id"));
             object.setName(rs.getString("name"));
-            object.setExplnation(rs.getString("address"));
+            object.setExplanation(rs.getString("address"));
             object.setPhotopath(rs.getString("photo_path"));
+
             return object;
         };
     }
@@ -47,7 +72,7 @@ public class entertainmentDAO {
 
     public int getTotallistnum(String gernename){
         return jdbctemplate.queryForObject(
-                "SELECT count(*) FROM entertainment WHERE gernename = ?",Integer.class ,gernename
+                "SELECT count(*) FROM entertainment WHERE entertainment.type = ?",Integer.class ,gernename
         );
     }
 

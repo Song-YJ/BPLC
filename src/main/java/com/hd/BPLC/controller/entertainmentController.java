@@ -1,5 +1,6 @@
 package com.hd.BPLC.controller;
 
+import com.hd.BPLC.domain.entertainmentdetail;
 import com.hd.BPLC.domain.entertainmentlist;
 import com.hd.BPLC.service.entertainmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,14 @@ public class entertainmentController {
     @ResponseBody
     public entertainmentlist getlistcontroller(@RequestParam(value="gernename")String gernename){
         entertainmentlist result = service.getlistinfo(gernename);
+
+        return result;
+    }
+
+    @GetMapping("/dao/detail/entertainment")
+    @ResponseBody
+    public entertainmentdetail getdetailcontroller(@RequestParam(value="id")String id){
+        entertainmentdetail result = service.getdetail(id);
 
         return result;
     }
