@@ -146,6 +146,10 @@ const imagespath = {
         rendejavous_gwangan:{
             thumbnail: require("@/assets/food/rendejavous_gwangan/thumbnail.jpeg"),
             pictures:[]
+        },
+        haeundae_Beef_Ribs:{
+            thumbnail: require('@/assets/food/haeundae_Beef_Ribs/thumbnail.jpg'),
+            pictures:[]
         }
     },
     sight: {
@@ -187,10 +191,6 @@ const imagespath = {
         },
         haeundae_beach: {
             thumbnail: require("@/assets/sight/haeundae_beach/thumbnail.png"),
-            pictures:[]
-        },
-        haeundae_Beef_Ribs: {
-            thumbnail: require("@/assets/sight/haeundae_Beef_Ribs/thumbnail.jpg"),
             pictures:[]
         },
         Jang_Yeong_sil_Science_Garden: {

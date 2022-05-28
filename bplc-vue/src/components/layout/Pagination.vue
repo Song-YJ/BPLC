@@ -31,7 +31,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'entertainPagination',
+  name: 'pagination',
   props:{
       listinfo:Object,
       routename:String
@@ -75,11 +75,11 @@ export default defineComponent({
   methods: {
       paging: function(){
         //lastpage를 구함
-        let entertainlistnum = this.listnum;
-        this.lastpage = ~~(Number(entertainlistnum) / 8);
+        let listnum = this.listnum;
+        this.lastpage = ~~(Number(listnum) / 8);
 
         if(this.lastpage <= 0){this.lastpage = 1;}
-        else if(Number(entertainlistnum) % 8 !== 0){this.lastpage = this.lastpage+1;}
+        else if(Number(listnum) % 8 !== 0){this.lastpage = this.lastpage+1;}
 
         //현재 페이지를 파라미터로 가져옴
         let curpage = Number(this.$route.params.page);

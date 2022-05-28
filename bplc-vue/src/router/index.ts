@@ -9,10 +9,16 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
 const HomeView = () => import(/* webpackChunkName: "home" */ '../views/HomeView.vue')
 const ExhibitionView = () => import(/* webpackChunkName: "exhibition" */ '../views/ExhibitionView.vue')
-const EntertainmentView = () => import(/* webpackChunkName: "entertainment" */ '../views/EntertainmentView.vue')
-const EntertainmentDetailView = () => import(/* webpackChunkName: "entertainmentdetail*/ '../views/EntertainmentDetailView.vue')
-const HotelView = () => import(/* webpackChunkName: hotel" */ '../views/HotelView.vue')
-const HotelDetailView = () => import(/*webpackChunkName: hoteldetail*/ '../views/HotelDetailView.vue')
+
+//여행지
+const EntertainmentView = () => import(/* webpackChunkName: "entertainment" */ '../views/tripsite/EntertainmentView.vue')
+const EntertainmentDetailView = () => import(/* webpackChunkName: "entertainmentdetail*/ '../views/tripsite/EntertainmentDetailView.vue')
+const HotelView = () => import(/* webpackChunkName: hotel" */ '../views/tripsite/HotelView.vue')
+const HotelDetailView = () => import(/*webpackChunkName: hoteldetail*/ '../views/tripsite/HotelDetailView.vue')
+const FoodView = () => import(/* webpackChunkName: food" */ '../views/tripsite/FoodView.vue')
+const FoodDetailView = () => import(/*webpackChunkName: fooddetail*/ '../views/tripsite/FoodDetailView.vue')
+const SightView = () => import(/* webpackChunkName: sight" */ '../views/tripsite/SightView.vue')
+const SightDetailView = () => import(/*webpackChunkName: sightdetail*/ '../views/tripsite/SightDetailView.vue')
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -58,15 +64,51 @@ const routes: Array<RouteRecordRaw> = [
     path: '/tripsite',
     redirect: {name: 'SightRoute'}
   },
+  
   {
-    path: '/tripsite/sight',
+    path: '/tripsite/sight/',
     name: 'SightRoute',
-    component: HomeView
+    redirect: {name:'SightRouteParams', params:{gernename:'all', page:1}}
   },
   {
-    path: '/tripsite/food',
+    path: '/tripsite/sight/:gernename/:page',
+    name: 'SightRouteParams',
+    component: SightView,
+    props: true
+  },
+  {
+    path: '/tripsite/sightdetail/',
+    name: 'SightDetailNoneParamsRoute',
+    redirect: {name:'SightRouteParams', params:{gernename:'all', page:1}}
+  },
+  {
+    path: '/tripsite/sightdetail/:id',
+    name: 'SightDetailRoute',
+    component: SightDetailView,
+    props: true
+  },
+
+  {
+    path: '/tripsite/food/',
     name: 'FoodRoute',
-    component: HomeView
+    redirect: {name:'FoodRouteParams', params:{gernename:'all', page:1}}
+  },
+  {
+    path: '/tripsite/food/:gernename/:page',
+    name: 'FoodRouteParams',
+    component: FoodView,
+    props: true
+  },
+  {
+    path: '/tripsite/fooddetail/',
+    name: 'FoodDetailNoneParamsRoute',
+    redirect: {name:'FoodRouteParams', params:{gernename:'all', page:1}}
+  },
+  {
+    path: '/tripsite/fooddetail/:id',
+    name: 'FoodDetailRoute',
+    component: FoodDetailView,
+    props: true
   },
 
   {
@@ -149,10 +191,12 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   scrollBehavior(to, from, savedPosition){
+    if(to.name !== from.name){
+      return {top: 0} //page 이동 시 항상 scroll을 가장 위에
+    }
     if(savedPosition){
       return savedPosition
     }
-    return {top: 0} //page 이동 시 항상 scroll을 가장 위에
   },
   routes
 })

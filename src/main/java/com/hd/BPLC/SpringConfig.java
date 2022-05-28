@@ -1,7 +1,7 @@
 package com.hd.BPLC;
 
-import com.hd.BPLC.repository.entertainmentDAO;
-import com.hd.BPLC.service.entertainmentService;
+import com.hd.BPLC.repository.tripsiteRepository;
+import com.hd.BPLC.service.tripsiteService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -16,12 +16,12 @@ public class SpringConfig {
     }
 
     @Bean
-    public entertainmentDAO EntertainmentDAO(){
-        return new entertainmentDAO(datasource);
+    public tripsiteRepository TripsiteRepository(){
+        return new tripsiteRepository(datasource);
     }
 
     @Bean
-    public entertainmentService EntertainmentService(){
-        return new entertainmentService(EntertainmentDAO());
+    public tripsiteService TripsiteService(){
+        return new tripsiteService(TripsiteRepository());
     }
 }
