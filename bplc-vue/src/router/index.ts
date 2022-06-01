@@ -8,7 +8,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
 const HomeView = () => import(/* webpackChunkName: "home" */ '../views/HomeView.vue')
-const ExhibitionView = () => import(/* webpackChunkName: "exhibition" */ '../views/ExhibitionView.vue')
 
 //여행지
 const EntertainmentView = () => import(/* webpackChunkName: "entertainment" */ '../views/tripsite/EntertainmentView.vue')
@@ -19,6 +18,9 @@ const FoodView = () => import(/* webpackChunkName: food" */ '../views/tripsite/F
 const FoodDetailView = () => import(/*webpackChunkName: fooddetail*/ '../views/tripsite/FoodDetailView.vue')
 const SightView = () => import(/* webpackChunkName: sight" */ '../views/tripsite/SightView.vue')
 const SightDetailView = () => import(/*webpackChunkName: sightdetail*/ '../views/tripsite/SightDetailView.vue')
+
+//여행 정보
+const GuideBookView = () => import(/* webpackChunkName: "guidebook" */ '../views/tripinfo/GuidebookView.vue')
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -40,7 +42,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/event/exhibition',
     name: 'ExhibitionRoute',
-    component: ExhibitionView,
+    component: HomeView,
   },
 
   //추천
@@ -170,11 +172,18 @@ const routes: Array<RouteRecordRaw> = [
     name: 'MapRoute',
     component: HomeView
   },
+
   {
-    path: '/tripinfo/guidebook',
+    path: '/tripinfo/guidebook/',
     name: 'GuidebookRoute',
-    component: HomeView
+    redirect: {name:'GuidebookRouteParams', params:{page: 1}}
   },
+  {
+    path: '/tripinfo/guidebook/:page',
+    name: 'GuidebookRouteParams',
+    component: GuideBookView
+  },
+
   {
     path: '/tripinfo/weather',
     name: 'WeatherRoute',

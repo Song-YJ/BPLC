@@ -10,7 +10,7 @@
         <div class="contents_wrap">
             <ContentsHead headname="음식" headdescription="부산의 먹거리"></ContentsHead>
             <div :class="{'contents':true, 'dataloading':listinfo.totallistnum <= 0}">
-                <Catergory MainC="여행지" SubC="음식"></Catergory>
+                <Category MainC="여행지" SubC="음식"></Category>
                 <Classification :classificationObject="getClassificationInfo()"></Classification>
                 <div class="card_container" v-if="listinfo.totallistnum > 0">
                     <Cards :listinfo="listinfo" routename="FoodDetailRoute"></Cards>
@@ -27,14 +27,14 @@
 import { defineComponent } from 'vue';
 import ContentsHead from '@/components/layout/ContentsHead.vue'
 import Cards from '@/components/layout/Cards.vue'
-import Catergory from '@/components/layout/Catergory.vue'
+import Category from '@/components/layout/Catergory.vue'
 import Pagination from '@/components/layout/Pagination.vue'
 import Classification from '@/components/layout/Classification.vue'
 
 export default defineComponent({
   name: 'FoodView',
   components:{
-      ContentsHead, Cards, Catergory, Pagination, Classification
+      ContentsHead, Cards, Category, Pagination, Classification
   },
   data(){
       return{

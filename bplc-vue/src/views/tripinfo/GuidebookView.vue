@@ -1,23 +1,22 @@
 /**
-	* @fileName  : EntertainmentView.vue
-	* @explain : bplc 웹 사이트 여행지의 엔터테인먼트 page
+	* @fileName  : GuidebookView.vue
+	* @explain : bplc 웹 사이트 여행 정보의 가이드북 page
 	* @author : 송유진 , yoyo6433@naver.com
-	* 부가 설명 : bplc 웹 사이트 여행지의 엔터테인먼트 page View
+	* 부가 설명 : bplc 웹 사이트 여행 정보의 가이드북 리스트 View
 	*/
 
 <template>
     <div class="contents_back">
         <div class="contents_wrap">
-            <ContentsHead headname="엔터테인먼트" headdescription="부산의 즐길거리"></ContentsHead>
+            <ContentsHead headname="가이드북" headdescription="부산을 한눈에 즐길 수 있는 가이드북"></ContentsHead>
             <div :class="{'contents':true, 'dataloading':listinfo.totallistnum <= 0}">
-                <Category MainC="여행지" SubC="엔터테인먼트"></Category>
-                <Classification :classificationObject="getClassificationInfo()"></Classification>
+                <Category MainC="여행 정보" SubC="가이드북"></Category>
                 <div class="card_container" v-if="listinfo.totallistnum > 0">
-                    <Cards :listinfo="listinfo" routename="EntertainmentDetailRoute"></Cards>
+                    <GuidebookCards :listinfo="listinfo"></GuidebookCards>
                 </div>
                 <div v-if="listinfo.totallistnum > 0">
                     <Pagination :listinfo="listinfo"
-                    routename="EntertainmentRouteParams"></Pagination>
+                    routename="GuidebookRouteParams"></Pagination>
                 </div>
             </div>
         </div>
@@ -26,24 +25,24 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import ContentsHead from '@/components/layout/ContentsHead.vue'
-import Cards from '@/components/layout/Cards.vue'
+import Testbtn from '@/components/tripinfo/testbtn.vue'
 import Category from '@/components/layout/Catergory.vue'
+import GuidebookCards from '@/components/tripinfo/GuidebookCards.vue'
 import Pagination from '@/components/layout/Pagination.vue'
-import Classification from '@/components/layout/Classification.vue'
 
 export default defineComponent({
-  name: 'EntertainmentView',
+  name: 'GuidebookView',
   components:{
-      ContentsHead, Cards, Category, Pagination, Classification
+      ContentsHead, Category, Testbtn, GuidebookCards, Pagination
   },
   data(){
-     return{
-         listinfo: {
-             totallistnum: 0,
-             category: "entertainment",
-             lists: []
-         }
-     }
+      return{
+          listinfo: {
+            totallistnum: 0,
+            category: "guidebook",
+            lists: []
+          }
+      }
   },
   mounted(){
       this.getListInfo();
@@ -55,11 +54,7 @@ export default defineComponent({
 
           //axios
           const axios = require('axios').default;
-          await axios.get('/dao/entertainment', {
-              params: {
-                gernename: String(this.$route.params.gernename)
-              }
-          })
+          await axios.get('/dao/guidebook')
           .then(function (response) {
               tln = response.data.totallistnum;
               ls = response.data.lists;
@@ -70,37 +65,17 @@ export default defineComponent({
 
           this.listinfo.totallistnum = tln;
           this.listinfo.lists = ls;
-      },
-      getClassificationInfo: function(){
-          let cinfo = [
-              {
-                  name: "전체",
-                  engname: "all",
-                  routename: "EntertainmentRouteParams"
-              },
-              {
-                  name: "실내",
-                  engname: "indoor",
-                  routename: "EntertainmentRouteParams"
-              },
-              {
-                  name: "실외",
-                  engname: "outdoor",
-                  routename: "EntertainmentRouteParams"
-              }
-          ]
-
-          return cinfo;
       }
   }
   
 });
 </script>
+
 <style scoped>
 .contents_back{
   background: white;
 
-  background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ),url(@/assets/entertainment/haeundae_bluelinepark/thumbnail.png);
+  background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ),url(@/assets/guidebook/guidebook_bg.jpg);
   background-size: 100vw;
   background-repeat: no-repeat;
   background-attachment: fixed;

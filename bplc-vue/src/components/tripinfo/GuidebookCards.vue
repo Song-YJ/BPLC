@@ -1,13 +1,13 @@
 /**
-	* @fileName  : Card.vue
-	* @explain : bplc 웹 사이트 여행지 page card component
+	* @fileName  : GuidebookCards.vue
+	* @explain : bplc 웹 사이트 여행 정보 가이드북 page card component
 	* @author : 송유진 , yoyo6433@naver.com
-	* 부가 설명 : bplc 웹 사이트 여행지 page의 card list component
+	* 부가 설명 : bplc 웹 사이트 여행 정보 가이드북 page의 card list component
 	*/
 
 <template>
-  <div class="card" v-for="listitem in lists" :key="listitem.id" @click="detailClick(listitem.id)">
-    <img :src="listitem.photopath.thumbnail" class="card-img" alt="loading failed">
+  <div class="card" v-for="listitem in lists" :key="listitem.id" @click="detailClick(listitem.filename)">
+    <img :src="listitem.photopath" class="card-img" alt="loading failed">
     <div class="card-img-overlay">
         <p class="card-title">{{listitem.name}}</p>
         <p class="card-text">{{listitem.explanation}}</p>
@@ -20,10 +20,9 @@ import { defineComponent } from 'vue';
 import imagepath from '@/assets/images';
 
 export default defineComponent({
-  name: 'Cards',
+  name: 'GuidebookCards',
   props: {
-    listinfo:Object,
-    routename:String
+    listinfo:Object
   },
   data(){
       return{
@@ -31,7 +30,8 @@ export default defineComponent({
             id: "",
             name: "",
             explanation: "",
-            photopath: ""
+            photopath: "",
+            filename: ""
           }]
       }
   },
@@ -58,8 +58,8 @@ export default defineComponent({
         }
       });
     },
-    detailClick: function(idnum:String){
-      this.$router.push({name: this.routename, params: {'id':String(idnum)}});
+    detailClick: function(filename:String){
+      location.href="/download/guidebook?filename=" + filename;
     }
   },
   

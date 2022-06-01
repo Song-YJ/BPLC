@@ -1,6 +1,8 @@
 package com.hd.BPLC;
 
+import com.hd.BPLC.repository.tripinfoRepository;
 import com.hd.BPLC.repository.tripsiteRepository;
+import com.hd.BPLC.service.tripinfoService;
 import com.hd.BPLC.service.tripsiteService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,4 +26,12 @@ public class SpringConfig {
     public tripsiteService TripsiteService(){
         return new tripsiteService(TripsiteRepository());
     }
+
+    @Bean
+    public tripinfoRepository TripinfoRepository(){
+        return new tripinfoRepository(datasource);
+    }
+
+    @Bean
+    public tripinfoService TripinfoService() { return new tripinfoService(TripinfoRepository()); }
 }

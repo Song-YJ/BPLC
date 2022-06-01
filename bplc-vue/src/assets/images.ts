@@ -205,6 +205,13 @@ const imagespath = {
             thumbnail: require("@/assets/sight/yongkungsa/thumbnail.jpg"),
             pictures:[]
         },
+    },
+    guidebook:{
+        courses001 : require("@/assets/guidebook/courses001.png"),
+        courses002 : require("@/assets/guidebook/courses002.png"),
+        courses003 : require("@/assets/guidebook/courses003.png"),
+        courses004 : require("@/assets/guidebook/courses004.png"),
+        courses005 : require("@/assets/guidebook/courses005.png"),
     }
 }
 
