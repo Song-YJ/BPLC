@@ -123,4 +123,14 @@ public class tripsiteService {
         tripsiteDetail result = repository.getContentDetail(tablename, id);
         return result;
     }
+
+    public int updateLikesSev(String tablename, String id){
+        int result = repository.updateLikesRep(tablename, id);
+        return result;
+    }
+
+    public int updateLikesCancelSev(String tablename, String id){
+        int result = repository.updateLikesCancelRep(tablename, id);
+        return result;
+    }
 }

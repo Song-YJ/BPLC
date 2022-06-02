@@ -4,6 +4,7 @@ import com.hd.BPLC.domain.tripsiteDetail;
 import com.hd.BPLC.domain.tripsiteList;
 import com.hd.BPLC.service.tripsiteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -76,6 +77,20 @@ public class tripsiteController {
     public tripsiteDetail getSightcontroller(@RequestParam(value="id")String id){
         tripsiteDetail result = service.getdetail("sight",id);
 
+        return result;
+    }
+
+    @GetMapping("/dao/likes")
+    @ResponseBody
+    public int updateLikes(@RequestParam(value="id")String id, @RequestParam(value="tablename")String tablename){
+        int result = service.updateLikesSev(tablename, id);
+        return result;
+    }
+
+    @GetMapping("/dao/likescancel")
+    @ResponseBody
+    public int updateLikesCancel(@RequestParam(value="id")String id, @RequestParam(value="tablename")String tablename){
+        int result = service.updateLikesCancelSev(tablename, id);
         return result;
     }
 }
