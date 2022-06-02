@@ -170,7 +170,10 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/tripinfo/map',
     name: 'MapRoute',
-    component: HomeView
+    component: HomeView,
+    beforeEnter(to, from , next) {
+      window.open("http://kko.to/vcsdWrp1W");
+    }
   },
 
   {
