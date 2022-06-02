@@ -9,6 +9,11 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
 const HomeView = () => import(/* webpackChunkName: "home" */ '../views/HomeView.vue')
 
+//추천
+const ThemeView = () => import(/* webpackChunkName: "theme" */ '../views/recommendation/ThemeView.vue')
+const ThemePdfView = () => import(/* webpackChunkName: "theme" */ '../components/recommendation/PdfViewer.vue')
+
+
 //여행지
 const EntertainmentView = () => import(/* webpackChunkName: "entertainment" */ '../views/tripsite/EntertainmentView.vue')
 const EntertainmentDetailView = () => import(/* webpackChunkName: "entertainmentdetail*/ '../views/tripsite/EntertainmentDetailView.vue')
@@ -51,10 +56,27 @@ const routes: Array<RouteRecordRaw> = [
     redirect: {name: 'CourseRoute'}
   },
   {
-    path: '/recommendation/theme',
+    path: '/recommendation/theme/',
     name: 'ThemeRoute',
-    component: HomeView
+    redirect: { name: 'ThemeRouteParams', params: { gernename: 'all', page: 1 } }
   },
+  {
+    path: '/recommendation/theme/:page',
+    name: 'ThemeRouteParams',
+    component: ThemeView,
+    props: true
+  },
+  {
+    path: '/recommendation/themedetail/',
+    name: 'ThemeDetailNoneParamsRoute',
+    redirect: {name:'ThemeRouteParams', params:{gernename:'all', page:1}}
+  },
+  {
+    path: '/recommendation/themedetail/:filename',
+    name: 'ThemeDetailRoute',
+    component: ThemePdfView,
+  },
+
   {
     path: '/recommendation/statistic',
     name: 'StatisticCourseRoute',

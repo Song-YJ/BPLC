@@ -2,8 +2,10 @@ package com.hd.BPLC;
 
 import com.hd.BPLC.repository.tripinfoRepository;
 import com.hd.BPLC.repository.tripsiteRepository;
+import com.hd.BPLC.repository.themeRepository;
 import com.hd.BPLC.service.tripinfoService;
 import com.hd.BPLC.service.tripsiteService;
+import com.hd.BPLC.service.themeService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -34,4 +36,12 @@ public class SpringConfig {
 
     @Bean
     public tripinfoService TripinfoService() { return new tripinfoService(TripinfoRepository()); }
+
+    @Bean
+    public themeRepository ThemeRepository(){
+        return new themeRepository(datasource);
+    }
+
+    @Bean
+    public themeService ThemeService() { return new themeService(ThemeRepository()); }
 }

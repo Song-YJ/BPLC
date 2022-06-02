@@ -212,6 +212,13 @@ const imagespath = {
         courses003 : require("@/assets/guidebook/courses003.png"),
         courses004 : require("@/assets/guidebook/courses004.png"),
         courses005 : require("@/assets/guidebook/courses005.png"),
+    },
+    theme:{
+        courses001 : require("@/assets/theme/courses001.png"),
+        courses002 : require("@/assets/theme/courses002.png"),
+        courses003 : require("@/assets/theme/courses003.png"),
+        courses004 : require("@/assets/theme/courses004.png"),
+        courses005 : require("@/assets/theme/courses005.png"),
     }
 }
 
