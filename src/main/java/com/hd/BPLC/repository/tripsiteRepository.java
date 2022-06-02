@@ -83,4 +83,16 @@ public class tripsiteRepository {
         );
     }
 
+    public int updateLikesRep(String tablename, String id){
+        return jdbctemplate.update(
+                "UPDATE " + tablename + " SET likes = likes + 1 WHERE id = \'" + id + "\'"
+        );
+    }
+
+    public int updateLikesCancelRep(String tablename, String id){
+        return jdbctemplate.update(
+                "UPDATE " + tablename + " SET likes = likes - 1 WHERE id = \'" + id + "\'"
+        );
+    }
+
 }

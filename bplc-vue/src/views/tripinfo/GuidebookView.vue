@@ -25,7 +25,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import ContentsHead from '@/components/layout/ContentsHead.vue'
-import Testbtn from '@/components/tripinfo/testbtn.vue'
 import Category from '@/components/layout/Catergory.vue'
 import GuidebookCards from '@/components/tripinfo/GuidebookCards.vue'
 import Pagination from '@/components/layout/Pagination.vue'
@@ -33,7 +32,7 @@ import Pagination from '@/components/layout/Pagination.vue'
 export default defineComponent({
   name: 'GuidebookView',
   components:{
-      ContentsHead, Category, Testbtn, GuidebookCards, Pagination
+      ContentsHead, Category, GuidebookCards, Pagination
   },
   data(){
       return{

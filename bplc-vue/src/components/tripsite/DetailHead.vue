@@ -9,7 +9,6 @@
     <div class="detailhead">
         <p class="categorystr">{{category}}</p>
         <h3 class="namestr">{{selecteddata.name}}</h3>
-        <p class="explanationstr">{{selecteddata.address}}</p>
         <img :src="selecteddata.photopath.thumbnail"/>
     </div>
 </template>

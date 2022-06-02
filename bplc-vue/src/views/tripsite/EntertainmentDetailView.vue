@@ -12,6 +12,7 @@
             <div class="contents">
                 <Category MainC="여행지" SubC="엔터테인먼트"></Category>
                 <DetailHead category="엔터테인먼트" :selecteddata="selecteddatainfo"></DetailHead>
+                <Likesbtn tablename="entertainment" :id="$route.params.id"></Likesbtn>
                 <DetailDescription :selecteddata="selecteddatainfo"></DetailDescription>
             </div>
         </div>
@@ -23,12 +24,13 @@ import ContentsHead from '@/components/layout/ContentsHead.vue'
 import Category from '@/components/layout/Catergory.vue'
 import DetailHead from '@/components/tripsite/DetailHead.vue'
 import DetailDescription from '@/components/tripsite/DetailDescription.vue'
+import Likesbtn from '@/components/layout/Likesbtn.vue'
 import imagepath from '@/assets/images'
 
 export default defineComponent({
   name: 'EntertainmentView',
   components:{
-      ContentsHead, Category, DetailHead, DetailDescription
+      ContentsHead, Category, DetailHead, DetailDescription, Likesbtn
   },
   data(){
       return{
