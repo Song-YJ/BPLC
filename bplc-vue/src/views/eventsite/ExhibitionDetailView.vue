@@ -64,7 +64,7 @@ export default defineComponent({
           })
           .then(function (response) {
               sdata = response.data;
-              sdata.photopath = imagepath.entertainment[sdata.photopath];
+              sdata.photopath = imagepath.exhibition[sdata.photopath];
           })
           .catch(function (error) {
               console.log(error);

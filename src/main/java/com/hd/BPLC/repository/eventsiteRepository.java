@@ -29,6 +29,12 @@ public class eventsiteRepository {
         );
     }
 
+    public int changeType(String curdate){
+        return jdbctemplate.update(
+                "UPDATE exhibition SET exhibition.type = \'진행종료\' WHERE end_date < \'" + curdate + "\'"
+        );
+    }
+
     private RowMapper<eventsiteDetail> summaryRowmapper(){
         return(rs, rowNum) -> {
             eventsiteDetail object = new eventsiteDetail();
@@ -57,6 +63,8 @@ public class eventsiteRepository {
             object.setPhone(rs.getString("phone"));
             object.setDetail(rs.getString("detail"));
             object.setHomepage(rs.getString("homepage"));
+
+            object.setExplanation();
 
 
             return object;

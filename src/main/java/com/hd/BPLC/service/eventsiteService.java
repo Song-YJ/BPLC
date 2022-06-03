@@ -4,6 +4,9 @@ import com.hd.BPLC.domain.eventsiteDetail;
 import com.hd.BPLC.domain.eventsiteList;
 import com.hd.BPLC.repository.eventsiteRepository;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class eventsiteService {
 
     eventsiteRepository repository;
@@ -29,6 +32,14 @@ public class eventsiteService {
 
     public eventsiteDetail getdetail(String tablename, String id){
         eventsiteDetail result = repository.getContentDetail(tablename, id);
+        return result;
+    }
+
+    public int changeType(){
+        LocalDate now = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String curdate = now.format(formatter);
+        int result = repository.changeType(curdate);
         return result;
     }
 }

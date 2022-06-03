@@ -53,9 +53,15 @@ export default defineComponent({
           let tln = 0;
           let ls = [];
 
+        const axios = require('axios').default;
+
+        await axios.get('/dao/exhibition/chgtype')
+          .catch(function (error) {
+              console.log(error);
+          });
         
           //axios
-          const axios = require('axios').default;
+          
           await axios.get('/dao/exhibition', {
               params: {
                 gernename: String(this.$route.params.gernename)
@@ -72,6 +78,7 @@ export default defineComponent({
 
           this.listinfo.totallistnum = tln;
           this.listinfo.lists = ls;
+
       },
       getClassificationInfo: function(){
           let cinfo = [

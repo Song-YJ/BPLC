@@ -30,4 +30,12 @@ public class eventController {
 
         return result;
     }
+
+    @GetMapping("/dao/exhibition/chgtype")
+    @ResponseBody
+    public int getChageType(){
+        int result = service.changeType();
+
+        return result;
+    }
 }
