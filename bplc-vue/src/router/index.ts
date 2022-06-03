@@ -12,8 +12,6 @@ const HomeView = () => import(/* webpackChunkName: "home" */ '../views/HomeView.
 //추천
 const ThemeView = () => import(/* webpackChunkName: "theme" */ '../views/recommendation/ThemeView.vue')
 const ThemeDetailView = () => import(/* webpackChunkName: "theme" */ '../views/recommendation/ThemeDetailView.vue')
-const ThemePdfView = () => import(/* webpackChunkName: "theme" */ '../components/recommendation/PdfViewer.vue')
-
 
 //여행지
 const EntertainmentView = () => import(/* webpackChunkName: "entertainment" */ '../views/tripsite/EntertainmentView.vue')
