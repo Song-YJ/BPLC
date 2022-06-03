@@ -11,6 +11,7 @@ const HomeView = () => import(/* webpackChunkName: "home" */ '../views/HomeView.
 
 //추천
 const ThemeView = () => import(/* webpackChunkName: "theme" */ '../views/recommendation/ThemeView.vue')
+const ThemeDetailView = () => import(/* webpackChunkName: "theme" */ '../views/recommendation/ThemeDetailView.vue')
 const ThemePdfView = () => import(/* webpackChunkName: "theme" */ '../components/recommendation/PdfViewer.vue')
 
 
@@ -61,7 +62,7 @@ const routes: Array<RouteRecordRaw> = [
     redirect: { name: 'ThemeRouteParams', params: { gernename: 'all', page: 1 } }
   },
   {
-    path: '/recommendation/theme/:page',
+    path: '/recommendation/theme/:gernename/:page',
     name: 'ThemeRouteParams',
     component: ThemeView,
     props: true
@@ -74,7 +75,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/recommendation/themedetail/:filename',
     name: 'ThemeDetailRoute',
-    component: ThemePdfView,
+    component: ThemeDetailView,
   },
 
   {
