@@ -224,6 +224,44 @@ const imagespath = {
         seomyeon_bakery: require("@/assets/theme/seomyeon_bakery.png"),
         haeundae_tour: require("@/assets/theme/haeundae_tour.png"),
         dongnae_history_tour: require("@/assets/theme/dongnae_history_tour.png"),
+    },
+    exhibition: {
+        kimseokyoung_ex:{
+            thumbnail: require("@/assets/exhibition/kimseokyoung_ex/thumbnail.png"),
+            pictures:[]
+        },
+        kimwhanki_ex:{
+            thumbnail: require("@/assets/exhibition/kimwhanki_ex/thumbnail.png"),
+            pictures:[]
+        },
+        leebae_ex:{
+            thumbnail: require("@/assets/exhibition/leebae_ex/thumbnail.png"),
+            pictures:[]
+        },
+        stickyfloor_ex:{
+            thumbnail: require("@/assets/exhibition/stickyfloor_ex/thumbnail.png"),
+            pictures:[]
+        },
+        gilbatle_ex:{
+            thumbnail: require("@/assets/exhibition/gilbatle_ex/thumbnail.png"),
+            pictures:[]
+        },
+        behappy_ex:{
+            thumbnail: require("@/assets/exhibition/behappy_ex/thumbnail.png"),
+            pictures:[]
+        },
+        buddha_ex:{
+            thumbnail: require("@/assets/exhibition/buddha_ex/thumbnail.png"),
+            pictures:[]
+        },
+        graybox_ex:{
+            thumbnail: require("@/assets/exhibition/graybox_ex/thumbnail.png"),
+            pictures:[]
+        },
+        Bologna_ex:{
+            thumbnail: require("@/assets/exhibition/Bologna_ex/thumbnail.png"),
+            pictures:[]
+        }
     }
 }
 

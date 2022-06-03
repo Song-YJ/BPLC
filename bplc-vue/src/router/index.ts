@@ -31,6 +31,10 @@ const SightDetailView = () => import(/*webpackChunkName: sightdetail*/ '../views
 //여행 정보
 const GuideBookView = () => import(/* webpackChunkName: "guidebook" */ '../views/tripinfo/GuidebookView.vue')
 
+//이벤트
+const ExhibitionView = () => import(/* webpackChunkName: "exhibition" */ '../views/eventsite/ExhibitionView.vue')
+const ExhibitionDetailView = () => import(/* webpackChunkName: "exhibitiondetail*/ '../views/eventsite/ExhibitionDetailView.vue')
+
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -40,7 +44,7 @@ const routes: Array<RouteRecordRaw> = [
 
   //이벤트
   {
-    path: '/event',
+    path: '/eventsite',
     redirect: {name:'FestivalRoute'}
   },
   {
@@ -49,9 +53,26 @@ const routes: Array<RouteRecordRaw> = [
     component: HomeView,
   },
   {
-    path: '/event/exhibition',
+    path: '/eventsite/exhibition/',
     name: 'ExhibitionRoute',
-    component: HomeView,
+    redirect: {name: 'ExhibitionRouteParams', params:{gernename:'continue', page:1}},
+  },
+  {
+    path: '/eventsite/exhibition/:gernename/:page',
+    name: 'ExhibitionRouteParams',
+    component: ExhibitionView,
+    props: true
+  },
+  {
+    path: '/eventsite/exhibitiondetail/',
+    name: 'ExhibitionDetailNoneRoute',
+    redirect: {name: 'ExhibitionRouteParams', params:{gernename:'continue', page:1}}
+  },
+  {
+    path: '/eventsite/exhibitiondetail/:id',
+    name: 'ExhibitionDetailRoute',
+    component: ExhibitionDetailView,
+    props: true
   },
 
   //추천
