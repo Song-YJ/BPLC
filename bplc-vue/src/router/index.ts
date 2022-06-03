@@ -232,7 +232,10 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/tripinfo/weather',
     name: 'WeatherRoute',
-    component: HomeView
+    component: HomeView,
+    beforeEnter(to, from , next) {
+      window.open("https://www.weather.go.kr/w/weather/forecast/short-term.do#");
+    }
   },
 
   //위의 주소 외
