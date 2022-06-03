@@ -204,7 +204,7 @@ const imagespath = {
         yongkungsa: {
             thumbnail: require("@/assets/sight/yongkungsa/thumbnail.jpg"),
             pictures:[]
-        },  
+        },
     },
     guidebook:{
         courses001 : require("@/assets/guidebook/courses001.png"),
@@ -212,6 +212,18 @@ const imagespath = {
         courses003 : require("@/assets/guidebook/courses003.png"),
         courses004 : require("@/assets/guidebook/courses004.png"),
         courses005 : require("@/assets/guidebook/courses005.png"),
+    },
+    theme:{
+        courses001 : require("@/assets/theme/courses001.png"),
+        courses002 : require("@/assets/theme/courses002.png"),
+        courses003 : require("@/assets/theme/courses003.png"),
+        courses004 : require("@/assets/theme/courses004.png"),
+        courses005: require("@/assets/theme/courses005.png"),
+        gijang_tour: require("@/assets/theme/gijang_tour.png"),
+        gwangalli_tour: require("@/assets/theme/gwangalli_tour.png"),
+        seomyeon_bakery: require("@/assets/theme/seomyeon_bakery.png"),
+        haeundae_tour: require("@/assets/theme/haeundae_tour.png"),
+        dongnae_history_tour: require("@/assets/theme/dongnae_history_tour.png"),
     },
     exhibition: {
         kimseokyoung_ex:{
@@ -250,7 +262,7 @@ const imagespath = {
             thumbnail: require("@/assets/exhibition/Bologna_ex/thumbnail.png"),
             pictures:[]
         }
-    },
+    }
 }
 
 export default imagespath;
