@@ -78,7 +78,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/recommendation/theme/',
     name: 'ThemeRoute',
-    redirect: { name: 'ThemeRouteParams', params: { gernename: 'all', page: 1 } }
+    redirect: {name:'ThemeRouteParams', params:{gernename:'all', page:1}}
   },
   {
     path: '/recommendation/theme/:gernename/:page',

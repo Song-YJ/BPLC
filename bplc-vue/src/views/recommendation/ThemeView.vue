@@ -17,7 +17,7 @@
                 </div>
                 <div v-if="listinfo.totallistnum > 0">
                     <Pagination :listinfo="listinfo"
-                    routename="ThemeDetailRouteParams"></Pagination>
+                    routename="ThemeRouteParams"></Pagination>
                 </div>
             </div>
         </div>
