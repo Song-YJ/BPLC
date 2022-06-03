@@ -204,7 +204,7 @@ const imagespath = {
         yongkungsa: {
             thumbnail: require("@/assets/sight/yongkungsa/thumbnail.jpg"),
             pictures:[]
-        },
+        },  
     },
     guidebook:{
         courses001 : require("@/assets/guidebook/courses001.png"),
@@ -212,7 +212,45 @@ const imagespath = {
         courses003 : require("@/assets/guidebook/courses003.png"),
         courses004 : require("@/assets/guidebook/courses004.png"),
         courses005 : require("@/assets/guidebook/courses005.png"),
-    }
+    },
+    exhibition: {
+        kimseokyoung_ex:{
+            thumbnail: require("@/assets/exhibition/kimseokyoung_ex/thumbnail.png"),
+            pictures:[]
+        },
+        kimwhanki_ex:{
+            thumbnail: require("@/assets/exhibition/kimwhanki_ex/thumbnail.png"),
+            pictures:[]
+        },
+        leebae_ex:{
+            thumbnail: require("@/assets/exhibition/leebae_ex/thumbnail.png"),
+            pictures:[]
+        },
+        stickyfloor_ex:{
+            thumbnail: require("@/assets/exhibition/stickyfloor_ex/thumbnail.png"),
+            pictures:[]
+        },
+        gilbatle_ex:{
+            thumbnail: require("@/assets/exhibition/gilbatle_ex/thumbnail.png"),
+            pictures:[]
+        },
+        behappy_ex:{
+            thumbnail: require("@/assets/exhibition/behappy_ex/thumbnail.png"),
+            pictures:[]
+        },
+        buddha_ex:{
+            thumbnail: require("@/assets/exhibition/buddha_ex/thumbnail.png"),
+            pictures:[]
+        },
+        graybox_ex:{
+            thumbnail: require("@/assets/exhibition/graybox_ex/thumbnail.png"),
+            pictures:[]
+        },
+        Bologna_ex:{
+            thumbnail: require("@/assets/exhibition/Bologna_ex/thumbnail.png"),
+            pictures:[]
+        }
+    },
 }
 
 export default imagespath;
