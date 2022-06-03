@@ -23,6 +23,8 @@ public class tripinfoController {
 
     @GetMapping("/download/guidebook")
     public void downloadGuidebook(@RequestParam(value="filename")String filename, HttpServletResponse response) throws IOException {
+        //String path = "C:\\Users\\송유진\\Desktop\\deu\\4-1\\캡스톤디자인\\BPLC\\guidebook\\" + filename + ".pdf";
+        //String path = "C:\\Users\\bmg12\\Desktop\\bplcdb\\guidebook\\guidebook\\" + filename + ".pdf";
         String path = "C:\\SnackProject\\guidebook\\" + filename + ".pdf";
 
         byte[] fileByte = FileUtils.readFileToByteArray(new File(path));
