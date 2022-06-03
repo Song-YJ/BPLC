@@ -63,6 +63,8 @@ public class eventsiteRepository {
             object.setPhone(rs.getString("phone"));
             object.setDetail(rs.getString("detail"));
             object.setHomepage(rs.getString("homepage"));
+            object.setOper_time(rs.getString("oper_time"));
+            object.setHoliday(rs.getString("holiday"));
 
             object.setExplanation();
 

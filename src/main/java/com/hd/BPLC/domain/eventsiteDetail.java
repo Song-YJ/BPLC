@@ -10,7 +10,7 @@ public class eventsiteDetail {
     private String address;
     private String photopath;
     private String phone=null;
-    private String opertime;
+    private String oper_time;
     private String homepage=null;
     private String holiday=null;
     private String detail=null;
@@ -72,12 +72,12 @@ public class eventsiteDetail {
         this.phone = phone;
     }
 
-    public String getOpertime() {
-        return opertime;
+    public String getOper_time() {
+        return oper_time;
     }
 
-    public void setOpertime(String opertime) {
-        this.opertime = opertime;
+    public void setOper_time(String opertime) {
+        this.oper_time = opertime;
     }
 
     public String getHomepage() {

@@ -17,11 +17,11 @@
             <table cellpadding=5>
                 <tr>
                     <td style="width: 30%">-&nbsp; &nbsp; &nbsp; &nbsp;주소</td>
-                    <td style="text-align: center;">{{selecteddata.explanation}}</td>
+                    <td style="text-align: center;">{{selecteddata.address}}</td>
                 </tr>
-                <tr v-if="selecteddata.start_date !== null">
+                <tr v-if="selecteddata.explanation !== null">
                     <td style="width: 30%">-&nbsp; &nbsp; &nbsp; &nbsp;전시일</td>
-                    <td style="text-align: center;">{{selecteddata.start_date}} - {{selecteddata.end_date}}</td>
+                    <td style="text-align: center;">{{selecteddata.explanation}}</td>
                 </tr>    
                 <tr v-if="selecteddata.oper_time !== null">
                     <td style="width: 30%">-&nbsp; &nbsp; &nbsp; &nbsp;운영 시간</td>
