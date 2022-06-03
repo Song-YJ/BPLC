@@ -17,11 +17,7 @@
                 </div>
                 <div v-if="listinfo.totallistnum > 0">
                     <Pagination :listinfo="listinfo"
-<<<<<<< HEAD
                     routename="ThemeRouteParams"></Pagination>
-=======
-                    routename="ThemeDetailRouteParams"></Pagination>
->>>>>>> c27c9b7 (commit 0602 추천의 테마별 코스 완료)
                 </div>
             </div>
         </div>
