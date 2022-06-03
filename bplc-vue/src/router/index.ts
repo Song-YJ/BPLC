@@ -12,6 +12,11 @@ const HomeView = () => import(/* webpackChunkName: "home" */ '../views/HomeView.
 //추천
 const ThemeView = () => import(/* webpackChunkName: "theme" */ '../views/recommendation/ThemeView.vue')
 const ThemeDetailView = () => import(/* webpackChunkName: "theme" */ '../views/recommendation/ThemeDetailView.vue')
+<<<<<<< HEAD
+=======
+const ThemePdfView = () => import(/* webpackChunkName: "theme" */ '../components/recommendation/PdfViewer.vue')
+
+>>>>>>> c27c9b7 (commit 0602 추천의 테마별 코스 완료)
 
 //여행지
 const EntertainmentView = () => import(/* webpackChunkName: "entertainment" */ '../views/tripsite/EntertainmentView.vue')
