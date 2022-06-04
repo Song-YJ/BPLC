@@ -6,7 +6,7 @@
 	*/
 
 <template>
-  <header>
+  <header :class="{'hidden':hidden}">
     <div class="menu_wrap">
       <ul class="dept_1">
         <img class="logoimg" src="@/assets/logo.png" @click="logoclick()"/> 
@@ -30,7 +30,9 @@
     </div>
   </header>
 
-  <ScrollTop></ScrollTop>
+  <div :class="{'hidden':hidden}">
+    <ScrollTop></ScrollTop>
+  </div>
 </template>
 
 <script lang="ts">
@@ -38,7 +40,13 @@ import { defineComponent } from 'vue';
 import ScrollTop from '@/components/layout/ScrollTop.vue';
 
 export default defineComponent({
-  name: 'HelloWorld',
+  name: 'Header',
+  props:{
+    hidden:{
+      type: Boolean,
+      default: false
+    }
+  },
   components:{
     ScrollTop
   },
@@ -123,7 +131,7 @@ export default defineComponent({
           ]
         }
       ],
-      searchdata: ''
+      searchdata: '',
     }
   }
 });
@@ -265,5 +273,9 @@ a:hover{
   height: 55px;
 
   display: var(--scrolltopdisplay);
+}
+
+.hidden{
+  display: none;
 }
 </style>
