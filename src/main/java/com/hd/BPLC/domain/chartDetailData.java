@@ -4,6 +4,7 @@ public class chartDetailData {
     private String id;
     private String name;
     private int likes;
+    private int ranking;
 
     public String getId() {
         return id;
@@ -27,5 +28,13 @@ public class chartDetailData {
 
     public void setLikes(int likes) {
         this.likes = likes;
+    }
+
+    public int getRanking() {
+        return ranking;
+    }
+
+    public void setRanking(int ranking) {
+        this.ranking = ranking;
     }
 }

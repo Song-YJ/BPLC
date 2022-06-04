@@ -16,36 +16,122 @@
         </svg>
     </div>
     <div class="contents-wrap">
-        <div class="chart"></div>
-        <div class="ranking-table"></div>
+        <div class="chart" id="chart-area">
+            <canvas id="drawchart" width="500" height="500"></canvas>
+        </div>
+        <div class="ranking-table">
+            <table cellpadding="10">
+                <tr v-for="item in chartdata.lists" :key="item.id">
+                    <td style="font-weight:bold;">{{item.ranking}}</td>
+                    <td @click="ViewDetail(item.id)" class="ranking-name">{{item.name}}</td>
+                    <td>{{item.likes}}</td>
+                </tr>
+            </table>
+        </div>
     </div>
     <div class="explain">
         <pre>- 좌측 그래프는 '좋아요'가 많이 눌린 순으로 5위까지 나타내며, 동석차인 경우 가나다순으로 나열하여 5위까지 나타내었습니다
-- 우측은 해당 카테고리의 총 좋아요 순을 나타내며, 동석차는 가나다순으로 나열하였고 클릭 시 이전 창에 해당 컨텐츠를 소개하는 페이지가 띄워집니다.</pre>
+- 그래프에서 좋아요 수가 0개인 것은 제외하였고(이에따라 그래프가 보이지 않을 수 있습니다.) 또한 그래프는 5위까지의 상대적인 수치를 나타냄을 알려드립니다
+- 우측은 해당 카테고리의 총 좋아요 순을 나타내며, 동석차는 가나다순 나열하였고 이름 클릭 시 이전 창에 해당 컨텐츠를 소개하는 페이지가 띄워집니다.</pre>
     </div>
 </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import {Chart, registerables} from 'chart.js';
+Chart.register(...registerables);
 
 export default defineComponent({
   name: 'StatisticsCards',
   emits:['exitsclicked'],
   props: {
-    
-  },
-  data(){
-      return{
-          
-      }
+    chartdata:Object
   },
   mounted(){
-    
+      this.getChart();
   },
   methods:{
     ExitsClickedEvent: function(){
         this.$emit('exitsclicked',false);
+    },
+    ViewDetail: function(id:string){
+        if(this.chartdata !== undefined){
+            opener.location.href = this.chartdata.url + id
+        }
+    },
+    getChart(){
+        if(this.chartdata !== undefined){
+            let areadiv = document.getElementById("chart-area");
+            if(areadiv !== null){
+                areadiv.removeChild(areadiv.childNodes[0]);
+                areadiv.innerHTML = "<canvas id='drawchart' width='500' height='500'></canvas>"
+            }
+
+            let chartAreadom = document.getElementById('drawchart') as HTMLCanvasElement | null;
+            let chartArea = chartAreadom?.getContext('2d');
+
+            let chartdatas = [{
+                id: "",
+                name: "",
+                likes: 0,
+                ranking: 0
+            }]
+            let i = 0;
+            chartdatas.pop();
+            this.chartdata.lists.forEach(element => {
+                if(i < 5){
+                    if(element.likes == 0){
+                        i = 10;
+                    }else{
+                        chartdatas.push(element);
+                        i += 1;
+                    }
+                }
+            });
+
+            let chartlabels = [""];
+            chartlabels.pop();
+
+            let chartdatavalue = [0];
+            chartdatavalue.pop();
+
+            chartdatas.forEach(element => {
+                chartlabels.push(element.name);
+                chartdatavalue.push(element.likes);
+            })
+
+            if(chartArea !== undefined && chartArea !== null && chartdatavalue.length > 0){
+                chartArea.clearRect(0,0,500,500);
+                let myChart = new Chart(chartArea, {
+                    type: 'doughnut',
+                    data: {
+                        labels: chartlabels,
+                        datasets: [
+                            {
+                                label: "likes ranking",
+                                backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                                data: chartdatavalue
+                            }
+                        ]
+                    },
+                    options:{
+                        plugins:{
+                            title:{
+                                display: true,
+                                text: '총 좋아요 수 : ' + this.chartdata.totallikes,
+                                font: {
+                                    size: 20
+                                }
+                            },
+                            legend:{
+                                display: false
+                            }
+                        }
+                    }
+                });
+            }
+        }
     }
   },
   
@@ -83,7 +169,7 @@ export default defineComponent({
 }
 
 .chart-content .explain{
-    margin: 1% auto 1% auto;
+    margin: auto auto 1% auto;
     width: 90%;
 }
 .chart-content .explain pre{
@@ -94,7 +180,31 @@ export default defineComponent({
 }
 
 .chart-content .contents-wrap{
-    height: 85%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 72%;
     width: 100%;
+}
+
+.chart-content .contents-wrap .ranking-table{
+    overflow: auto;
+    height: 70%;
+    width:fit-content;
+    margin: 2%;
+}
+.chart-content .contents-wrap .ranking-table table{
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 17pt;
+    text-align: center;
+}
+
+.chart-content .contents-wrap .ranking-table table .ranking-name:hover{
+    cursor: pointer;
+}
+
+.chart-content .contents-wrap .chart{
+    margin-right: 7%;
 }
 </style>

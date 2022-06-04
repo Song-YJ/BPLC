@@ -19,7 +19,7 @@
             </tr>
         </table>
         <div v-if="isdetail" class="chart-content-wrap">
-            <StatisticsDetail @exitsclicked="chgisdetailfalse"></StatisticsDetail>
+            <StatisticsDetail :chartdata="data[selectedcontents]" @exitsclicked="chgisdetailfalse"></StatisticsDetail>
         </div>
     </div>
 </template>
@@ -42,9 +42,9 @@ export default defineComponent({
              theme_course:[],
              sight:[],
              food:[],
-             entertainmnet:[],
+             entertainment:[],
              hotel:[]
-         }
+         },
      }
   },
   mounted(){
@@ -69,7 +69,7 @@ export default defineComponent({
              theme_course:[],
              sight:[],
              food:[],
-             entertainmnet:[],
+             entertainment:[],
              hotel:[]
          }
           const axios = require('axios').default;
@@ -82,8 +82,6 @@ export default defineComponent({
           });
 
           this.data = getdata;
-
-          console.log(this.data);
       }
   }
   

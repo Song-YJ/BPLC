@@ -1,10 +1,7 @@
 package com.hd.BPLC;
 
 import com.hd.BPLC.repository.*;
-import com.hd.BPLC.service.eventsiteService;
-import com.hd.BPLC.service.themeService;
-import com.hd.BPLC.service.tripinfoService;
-import com.hd.BPLC.service.tripsiteService;
+import com.hd.BPLC.service.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -53,6 +50,6 @@ public class SpringConfig {
     @Bean
     public recommendationRepository RecommendationRepository() { return new recommendationRepository(datasource); }
 
-    //@Bean
-    //public eventsiteService EventsiteService() { return new eventsiteService(EventsiteRepository()); }
+    @Bean
+    public recommendationService RecommendationService() { return new recommendationService(RecommendationRepository()); }
 }

@@ -67,7 +67,6 @@ export default defineComponent({
   name: 'StatisticsCards',
   emits:['contents','cardclicked'],
   props: {
-    data:Array
   },
   data(){
       return{

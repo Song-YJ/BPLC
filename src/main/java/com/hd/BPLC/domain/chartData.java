@@ -5,7 +5,7 @@ import java.util.List;
 public class chartData {
     private List<chartDetailData> lists;
     private int totallikes;
-    private String category;
+    private String url;
 
     public List<chartDetailData> getLists() {
         return lists;
@@ -23,11 +23,11 @@ public class chartData {
         this.totallikes = totallikes;
     }
 
-    public String getCategory() {
-        return category;
+    public String getUrl() {
+        return url;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setUrl(String url) {
+        this.url = url;
     }
 }
