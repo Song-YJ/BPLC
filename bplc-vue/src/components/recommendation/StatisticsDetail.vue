@@ -20,11 +20,11 @@
             <canvas id="drawchart" width="500" height="500"></canvas>
         </div>
         <div class="ranking-table">
-            <table cellpadding="10">
+            <table cellspacing="20">
                 <tr v-for="item in chartdata.lists" :key="item.id">
                     <td style="font-weight:bold;">{{item.ranking}}</td>
                     <td @click="ViewDetail(item.id)" class="ranking-name">{{item.name}}</td>
-                    <td>{{item.likes}}</td>
+                    <td style="font-style:italic;">{{item.likes}}</td>
                 </tr>
             </table>
         </div>
@@ -96,21 +96,24 @@ export default defineComponent({
             let chartdatavalue = [0];
             chartdatavalue.pop();
 
+            let charttotal = 0;
+
             chartdatas.forEach(element => {
                 chartlabels.push(element.name);
                 chartdatavalue.push(element.likes);
+                charttotal += element.likes;
             })
 
             if(chartArea !== undefined && chartArea !== null && chartdatavalue.length > 0){
                 chartArea.clearRect(0,0,500,500);
                 let myChart = new Chart(chartArea, {
-                    type: 'doughnut',
+                    type: 'pie',
                     data: {
                         labels: chartlabels,
                         datasets: [
                             {
                                 label: "likes ranking",
-                                backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                                backgroundColor: ["#7F7FD5", "#86A8E7","#91EAE4","#FBC7D4","#B3A4E8"],
                                 data: chartdatavalue
                             }
                         ]
@@ -119,7 +122,7 @@ export default defineComponent({
                         plugins:{
                             title:{
                                 display: true,
-                                text: '총 좋아요 수 : ' + this.chartdata.totallikes,
+                                text: "순위의 총 좋아요 수 " + charttotal + "개 / 총 좋아요 수 " + this.chartdata.totallikes + "개의 상대 비율",
                                 font: {
                                     size: 20
                                 }
@@ -169,14 +172,20 @@ export default defineComponent({
 }
 
 .chart-content .explain{
-    margin: auto auto 1% auto;
-    width: 90%;
+    border: 1px solid darkgray;
+    border-radius: 10px;
+    margin: 1% auto 1% auto;
+    width: 95%;
+
+    padding: 0.5% 2% 0.5% 2%;
 }
 .chart-content .explain pre{
     font-size: 14pt;
     font-family: 'Nanum Gothic', sans-serif;
     color:rgb(100, 100, 100);
     line-height: 25pt;
+
+    margin: 0;
 }
 
 .chart-content .contents-wrap{
@@ -184,7 +193,7 @@ export default defineComponent({
     justify-content: center;
     align-items: center;
 
-    height: 72%;
+    height: 70%;
     width: 100%;
 }
 
@@ -198,6 +207,9 @@ export default defineComponent({
     font-family: 'Nanum Gothic', sans-serif;
     font-size: 17pt;
     text-align: center;
+    color:rgb(100, 100, 100);
+
+    border-collapse: separate;
 }
 
 .chart-content .contents-wrap .ranking-table table .ranking-name:hover{

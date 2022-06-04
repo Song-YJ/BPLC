@@ -9,7 +9,7 @@
     <div class="chart-content-back">
         <table class="chart-content-list">
             <tr>
-                <td v-if="ismain">
+                <td v-if="ismain" class="main">
                     <h1>BPLC Statistics</h1>
                     <button @click="chgismain()">See it! >></button>
                 </td>
@@ -99,7 +99,7 @@ export default defineComponent({
     height: 100%;
     background: rgba(0,0,0,0);
 }
-.chart-content-back .chart-content-list td{
+.chart-content-back .chart-content-list .main{
     background-color: white; 
 }
 .chart-content-back .chart-content-list td h1{
@@ -182,7 +182,7 @@ export default defineComponent({
 .chart-content-back .chart-content-wrap{
     width: 100vw;
     height: 100vh;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0,0,0,0.5);
 
     position: absolute;
     top: 0;

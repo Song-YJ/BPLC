@@ -6,7 +6,7 @@
 	*/
 
 <template>
-<div class="card-wrap-row1">
+<div class="card-wrap">
     <div class="cards" @click="CardClickEvent('theme_course')">
         <div class="face face1">
             <div class="content">
@@ -36,8 +36,7 @@
         <div class="face face2">
         </div>
     </div>
-</div>
-<div class="card-wrap-row2">
+
     <div class="cards" @click="CardClickEvent('entertainment')">
         <div class="face face1">
             <div class="content">
@@ -88,27 +87,19 @@ export default defineComponent({
 
 <style scoped>
 
-.card-wrap-row1{
+.card-wrap{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    margin: 4% auto 4% auto;
-    grid-column-gap: 10%;
-    width: calc(18rem * 3 + 20%);
-}
-.card-wrap-row2{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin: 3% auto 3% auto;
-    grid-column-gap: 10%;
-    width: calc(18rem * 2 + 10%);
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    margin: 1.5% auto 1.5% auto;
+    width: 100%;
+    height: 100%;
 }
 
 .cards{
     position: relative;
-    width: 18rem;
-    height: 10rem;
+    width: 100%;
+    height: 100%;
     margin: 0 auto 0 auto;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
 }
 .cards .face{
     position: absolute;
@@ -123,6 +114,7 @@ export default defineComponent({
 .cards .face.face1{
     box-sizing: border-box;
     padding: 20px;
+    background: white;
 }
 .cards .face.face1 h3{
     margin: 0;
@@ -131,29 +123,54 @@ export default defineComponent({
 }
 .cards .face.face2{
     background-size: cover;
-    transition: 0.2s;
+    background-position: center center;
+    transition: 0.3s;
 }
 .cards:hover .face.face2{
-    height: 2rem;
+    height: 30%;
     cursor: pointer;
 }
 .cards:hover .face.face1{
     cursor:pointer;
 }
 
-.card-wrap-row1 .cards:nth-child(1) .face.face2{
+.card-wrap .cards:nth-child(1) .face.face2{
+    transition: 0.3s;
+    background-image: linear-gradient( rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5) ), url(@/assets/theme/theme_main3.jpg);
+}
+.card-wrap .cards:hover:nth-child(1) .face.face2{
     background-image: url(@/assets/theme/theme_main3.jpg);
 }
-.card-wrap-row1 .cards:nth-child(2) .face.face2{
+
+.card-wrap .cards:nth-child(2) .face.face2{
+    background-image: linear-gradient( rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5) ),url(@/assets/sight/Dongnaeeupseong/thumbnail.jpeg);
+    transition: 0.3s;
+}
+.card-wrap .cards:hover:nth-child(2) .face.face2{
     background-image: url(@/assets/sight/Dongnaeeupseong/thumbnail.jpeg);
 }
-.card-wrap-row1 .cards:nth-child(3) .face.face2{
+
+.card-wrap .cards:nth-child(3) .face.face2{
+    background-image: linear-gradient( rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5) ),url(@/assets/food/mainback.jpg);
+    transition: 0.3s;
+}
+.card-wrap .cards:hover:nth-child(3) .face.face2{
     background-image: url(@/assets/food/mainback.jpg);
 }
-.card-wrap-row2 .cards:nth-child(1) .face.face2{
+
+.card-wrap .cards:nth-child(4) .face.face2{
+    background-image: linear-gradient( rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5) ),url(@/assets/entertainment/haeundae_bluelinepark/thumbnail.png);
+    transition: 0.3s;
+}
+.card-wrap .cards:hover:nth-child(4) .face.face2{
     background-image: url(@/assets/entertainment/haeundae_bluelinepark/thumbnail.png);
 }
-.card-wrap-row2 .cards:nth-child(2) .face.face2{
+
+.card-wrap .cards:nth-child(5) .face.face2{
+    background-image: linear-gradient( rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5) ),url(@/assets/hotel/busan_signiel/thumbnail.jpeg);
+    transition: 0.3s;
+}
+.card-wrap .cards:hover:nth-child(5) .face.face2{
     background-image: url(@/assets/hotel/busan_signiel/thumbnail.jpeg);
 }
 </style>
