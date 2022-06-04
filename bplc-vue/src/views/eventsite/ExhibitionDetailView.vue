@@ -21,8 +21,8 @@
 import { defineComponent } from 'vue';
 import ContentsHead from '@/components/layout/ContentsHead.vue'
 import Category from '@/components/layout/Catergory.vue'
-import DetailHead from '@/components/tripsite/DetailHead.vue'
-import DetailDescription from '@/components/tripsite/DetailDescription.vue'
+import DetailHead from '@/components/eventsite/DetailHead.vue'
+import DetailDescription from '@/components/eventsite/DetailDescription.vue'
 import imagepath from '@/assets/images'
 
 export default defineComponent({
