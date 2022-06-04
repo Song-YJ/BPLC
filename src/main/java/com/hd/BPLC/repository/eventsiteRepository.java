@@ -29,9 +29,15 @@ public class eventsiteRepository {
         );
     }
 
-    public int changeType(String curdate){
+    public int changeType1(String curdate, String tablename){
         return jdbctemplate.update(
-                "UPDATE exhibition SET exhibition.type = \'진행종료\' WHERE end_date < \'" + curdate + "\'"
+                "UPDATE " + tablename + " SET " + tablename + ".type = \'진행종료\' WHERE end_date < \'" + curdate + "\'"
+        );
+    }
+
+    public int changeType2(String curdate, String tablename){
+        return jdbctemplate.update(
+                "UPDATE " + tablename + " SET " + tablename + ".type = \'진행중\' WHERE start_date < \'" + curdate + "\' AND end_date > \'" + curdate + "\'"
         );
     }
 

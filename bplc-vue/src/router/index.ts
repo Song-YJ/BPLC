@@ -29,6 +29,8 @@ const GuideBookView = () => import(/* webpackChunkName: "guidebook" */ '../views
 //이벤트
 const ExhibitionView = () => import(/* webpackChunkName: "exhibition" */ '../views/eventsite/ExhibitionView.vue')
 const ExhibitionDetailView = () => import(/* webpackChunkName: "exhibitiondetail*/ '../views/eventsite/ExhibitionDetailView.vue')
+const FestivalView = () => import(/* webpackChunkName: "festival" */ '../views/eventsite/FestivalView.vue')
+const FestivalDetailView = () => import(/* webpackChunkName: "festivaldetail*/ '../views/eventsite/FestivalDetailView.vue')
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -43,9 +45,26 @@ const routes: Array<RouteRecordRaw> = [
     redirect: {name:'FestivalRoute'}
   },
   {
-    path: '/event/festival',
+    path: '/eventsite/festival/',
     name: 'FestivalRoute',
-    component: HomeView,
+    redirect: {name: 'FestivalRouteParams', params:{gernename:'continue', page:1}},
+  },
+  {
+    path: '/eventsite/festival/:gernename/:page',
+    name: 'FestivalRouteParams',
+    component: FestivalView,
+    props: true
+  },
+  {
+    path: '/eventsite/festivaldetail/',
+    name: 'FestivalDetailNoneRoute',
+    redirect: {name: 'FestivalRouteParams', params:{gernename:'continue', page:1}}
+  },
+  {
+    path: '/eventsite/festivaldetail/:id',
+    name: 'FestivalDetailRoute',
+    component: FestivalDetailView,
+    props: true
   },
   {
     path: '/eventsite/exhibition/',
