@@ -1,8 +1,8 @@
 /**
 	* @fileName  : Card.vue
-	* @explain : bplc 웹 사이트 여행지 page card component
+	* @explain : bplc 웹 사이트 여행지, 이벤트 page card component
 	* @author : 송유진 , yoyo6433@naver.com
-	* 부가 설명 : bplc 웹 사이트 여행지 page의 card list component
+	* 부가 설명 : bplc 웹 사이트 여행지, 이벤트 page의 card list component
 	*/
 
 <template>

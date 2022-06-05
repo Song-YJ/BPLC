@@ -2,7 +2,7 @@
 	* @fileName  : StatisticsView.vue
 	* @explain : bplc 웹 사이트 추천의 통계별 코스 page
 	* @author : 송유진 , yoyo6433@naver.com
-	* 부가 설명 : bplc 웹 사이트 추천의 통계별 코스 page View
+	* 부가 설명 : bplc 웹 사이트 추천의 통계별 코스 page View / 테마별 코스와 여행지의 각 카테고리의 좋아요 갯수 통계 정보를 나타냄
 	*/
 
 <template>

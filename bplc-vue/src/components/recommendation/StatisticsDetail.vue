@@ -1,8 +1,8 @@
 /**
-	* @fileName  : StatisticsCards.vue
-	* @explain : bplc 웹 사이트 추천의 통계별 코스의 card component
+	* @fileName  : StatisticsDetail.vue
+	* @explain : bplc 웹 사이트 추천의 통계별 코스의 Detail component
 	* @author : 송유진 , yoyo6433@naver.com
-	* 부가 설명 : bplc 웹 사이트 추천의 통계별 코스의 page의 card list component
+	* 부가 설명 : bplc 웹 사이트 추천의 통계별 코스의 page의 카테고리별 통계정보를 받아 나타내는 component
 	*/
 
 <template>
@@ -17,7 +17,7 @@
     </div>
     <div class="contents-wrap">
         <div class="chart" id="chart-area">
-            <canvas id="drawchart" width="500" height="500"></canvas>
+            <canvas id="drawchart" width="400" height="400"></canvas>
         </div>
         <div class="ranking-table">
             <table cellspacing="20">
@@ -65,7 +65,7 @@ export default defineComponent({
             let areadiv = document.getElementById("chart-area");
             if(areadiv !== null){
                 areadiv.removeChild(areadiv.childNodes[0]);
-                areadiv.innerHTML = "<canvas id='drawchart' width='500' height='500'></canvas>"
+                areadiv.innerHTML = "<canvas id='drawchart' width='400' height='400'></canvas>"
             }
 
             let chartAreadom = document.getElementById('drawchart') as HTMLCanvasElement | null;
@@ -193,7 +193,7 @@ export default defineComponent({
     justify-content: center;
     align-items: center;
 
-    height: 70%;
+    height: 68%;
     width: 100%;
 }
 
