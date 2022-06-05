@@ -24,6 +24,7 @@ const SightView = () => import(/* webpackChunkName: sight" */ '../views/tripsite
 const SightDetailView = () => import(/*webpackChunkName: sightdetail*/ '../views/tripsite/SightDetailView.vue')
 
 //여행 정보
+const NoticeView = () => import(/* webpackChunkName: "notice" */ '../views/tripinfo/NoticeView.vue')
 const GuideBookView = () => import(/* webpackChunkName: "guidebook" */ '../views/tripinfo/GuidebookView.vue')
 
 //이벤트
@@ -226,7 +227,12 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/tripinfo/notice',
     name: 'NoticeRoute',
-    component: HomeView
+    redirect: {name:'NoticeRouteParams', params:{page: 1}}
+  },
+  {
+    path: '/tripinfo/notice/:page',
+    name: 'NoticeRouteParams',
+    component: NoticeView
   },
   {
     path: '/tripinfo/map',

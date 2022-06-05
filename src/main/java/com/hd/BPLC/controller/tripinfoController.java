@@ -1,6 +1,7 @@
 package com.hd.BPLC.controller;
 
 import com.hd.BPLC.domain.guidebook;
+import com.hd.BPLC.domain.notice;
 import com.hd.BPLC.service.tripinfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,6 +43,14 @@ public class tripinfoController {
     @ResponseBody
     public guidebook getGuidebook(){
         guidebook result = service.getGuidebookinfo();
+
+        return result;
+    }
+
+    @GetMapping("/dao/notice")
+    @ResponseBody
+    public notice getNotice(){
+        notice result = service.getNoticeinfo();
 
         return result;
     }
