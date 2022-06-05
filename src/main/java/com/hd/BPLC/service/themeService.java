@@ -2,7 +2,6 @@ package com.hd.BPLC.service;
 
 import com.hd.BPLC.domain.theme;
 import com.hd.BPLC.domain.themeDetail;
-import com.hd.BPLC.domain.tripsiteDetail;
 import com.hd.BPLC.repository.themeRepository;
 
 public class themeService {
@@ -37,5 +36,18 @@ public class themeService {
     public themeDetail getThemeDetail(String filename){
         themeDetail result = repository.getThemeContentDetail(filename);
         return result;
+    }
+
+    public theme getThemeSearch(String gernename, String searchdata){
+        theme result = new theme();
+
+        if(gernename.equals("all") || gernename.equals("theme")) {
+            result.setTotallistnum(repository.getThemeTotallistnum(gernename, searchdata));
+            result.setLists(repository.getThemeSearch(gernename, searchdata));
+            return result;
+        }
+        else {
+            return null;
+        }
     }
 }

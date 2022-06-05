@@ -1,8 +1,8 @@
 /**
-	* @fileName  : Header.vue
-	* @explain : bplc 웹 사이트 Header의 navigation
-	* @author : 송유진 , yoyo6433@naver.com
-	* 부가 설명 : bplc 웹 사이트의 Header navigation component
+	* @fileName  : ScroppTop.vue
+	* @explain : 페이지를 맨위로 올려주는 component
+	* @author : 배민경 , bmg1203@naver.com
+	* 부가 설명 : 화살표 아이콘 클릭시 페이지를 맨위로 올려주는 component
 	*/
 
 <template>

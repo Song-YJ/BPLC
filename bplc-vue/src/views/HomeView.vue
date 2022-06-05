@@ -1,3 +1,10 @@
+/**
+	* @fileName  : HomeView.vue
+	* @explain : bplc 웹 사이트의 main page
+	* @author : 배민경 , bmg1203@naver.com
+	* 부가 설명 : bplc 웹 사이트의 main page로 이미지가 움직이는 베너 형태의 page
+	*/
+
 <template @scroll.passive=false>
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">

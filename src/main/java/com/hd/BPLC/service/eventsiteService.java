@@ -14,7 +14,7 @@ public class eventsiteService {
         this.repository = repository;
     }
 
-    public eventsiteList getEntertainlistinfo(String gernename){
+    public eventsiteList getExhibitionlistinfo(String gernename){
         eventsiteList result = new eventsiteList("exhibition");
 
         if(gernename.equals("continue")){
@@ -30,16 +30,43 @@ public class eventsiteService {
         return result;
     }
 
+    public eventsiteList getFestivallistinfo(String gernename){
+        eventsiteList result = new eventsiteList("festival");
+
+        if(gernename.equals("continue")){
+            result.setTotallistnum(repository.getTotallistnum("festival", "진행중"));
+            result.setLists(repository.getSummaryList("festival", "진행중"));
+        }else{
+            if(gernename.equals("end")){
+                result.setTotallistnum(repository.getTotallistnum("festival", "진행종료"));
+                result.setLists(repository.getSummaryList("festival", "진행종료"));
+            }else{
+                result.setTotallistnum(repository.getTotallistnum("festival", "진행예정"));
+                result.setLists(repository.getSummaryList("festival","진행예정"));
+            }
+        }
+
+        return result;
+    }
+
     public eventsiteDetail getdetail(String tablename, String id){
         eventsiteDetail result = repository.getContentDetail(tablename, id);
         return result;
     }
 
-    public int changeType(){
+    public int changeType1(String tablename) {
         LocalDate now = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String curdate = now.format(formatter);
-        int result = repository.changeType(curdate);
+        int result = repository.changeType1(curdate, tablename);
+        return result;
+    }
+
+    public int changeType2(String tablename){
+        LocalDate now = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String curdate = now.format(formatter);
+        int result = repository.changeType2(curdate, tablename);
         return result;
     }
 }

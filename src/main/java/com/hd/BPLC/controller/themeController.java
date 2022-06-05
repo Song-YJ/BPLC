@@ -37,6 +37,14 @@ public class themeController {
         return result;
     }
 
+    @GetMapping("/dao/search/theme")
+    @ResponseBody
+    public theme getThemeSearch(@RequestParam(value="gernename")String gernename, @RequestParam(value="searchdata")String searchdata){
+        theme result = service.getThemeSearch(gernename, searchdata);
+
+        return result;
+    }
+
     /*private static final String BASE_DIR = System.getProperty("user.dir") + "\\bplc-vue\\src\\assets\\theme\\";
 
     @RequestMapping("dao/themeDetail/files")

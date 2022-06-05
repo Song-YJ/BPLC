@@ -1,5 +1,6 @@
 package com.hd.BPLC.service;
 
+import com.hd.BPLC.domain.theme;
 import com.hd.BPLC.domain.tripsiteDetail;
 import com.hd.BPLC.domain.tripsiteList;
 import com.hd.BPLC.repository.tripsiteRepository;
@@ -132,5 +133,28 @@ public class tripsiteService {
     public int updateLikesCancelSev(String tablename, String id){
         int result = repository.updateLikesCancelRep(tablename, id);
         return result;
+    }
+
+    public tripsiteList getTripsiteSearch(String gernename, String searchdata){
+        tripsiteList result1 = new tripsiteList("sight");
+        tripsiteList result2 = new tripsiteList("food");
+        tripsiteList result3 = new tripsiteList("hotal");
+        tripsiteList result4 = new tripsiteList("entertainment");
+
+        if(gernename.equals("all") || gernename.equals("tripsite")){
+            result1.setTotallistnum(repository.getTripsiteSearchTotallistnum(gernename, searchdata));
+            result1.setLists(repository.getSummaryList("sight"));
+            result2.setTotallistnum(repository.getTripsiteSearchTotallistnum(gernename, searchdata));
+            result2.setLists(repository.getSummaryList("food"));
+            result3.setTotallistnum(repository.getTripsiteSearchTotallistnum(gernename, searchdata));
+            result3.setLists(repository.getSummaryList("hotal"));
+            result4.setTotallistnum(repository.getTripsiteSearchTotallistnum(gernename, searchdata));
+            result4.setLists(repository.getSummaryList("entertainment"));
+
+            return result1, result2, result3, result4;
+        }
+        else {
+            return null;
+        }
     }
 }

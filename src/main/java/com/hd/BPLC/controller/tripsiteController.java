@@ -1,5 +1,6 @@
 package com.hd.BPLC.controller;
 
+import com.hd.BPLC.domain.theme;
 import com.hd.BPLC.domain.tripsiteDetail;
 import com.hd.BPLC.domain.tripsiteList;
 import com.hd.BPLC.service.tripsiteService;
@@ -91,6 +92,14 @@ public class tripsiteController {
     @ResponseBody
     public int updateLikesCancel(@RequestParam(value="id")String id, @RequestParam(value="tablename")String tablename){
         int result = service.updateLikesCancelSev(tablename, id);
+        return result;
+    }
+
+    @GetMapping("/dao/search/tripsite")
+    @ResponseBody
+    public tripsiteList getTripsiteSearch(@RequestParam(value="gernename")String gernename, @RequestParam(value="searchdata")String searchdata){
+        tripsiteList result = service.getTripsiteSearch(gernename, searchdata);
+
         return result;
     }
 }

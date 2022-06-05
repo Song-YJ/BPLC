@@ -95,4 +95,14 @@ public class tripsiteRepository {
         );
     }
 
+    public int getTripsiteSearchTotallistnum(String gernename, String searchdata){
+        int searchcount;
+
+        jdbctemplate.queryForObject("SELECT count(*) FROM sight WHERE name || address LIKE '%" + searchdata + "%'", Integer.class);
+        jdbctemplate.queryForObject("SELECT count(*) FROM food WHERE name || address LIKE '%" + searchdata + "%'", Integer.class);
+        jdbctemplate.queryForObject("SELECT count(*) FROM hotal WHERE name || address LIKE '%" + searchdata + "%'", Integer.class);
+        jdbctemplate.queryForObject("SELECT count(*) FROM entertainment WHERE name || address LIKE '%" + searchdata + "%'", Integer.class);
+
+        return searchcount;
+    }
 }

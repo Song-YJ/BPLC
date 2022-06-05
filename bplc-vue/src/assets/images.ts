@@ -262,6 +262,36 @@ const imagespath = {
             thumbnail: require("@/assets/exhibition/Bologna_ex/thumbnail.png"),
             pictures:[]
         }
+    },
+    festival: {
+        int_dance_fe:{
+            thumbnail: require("@/assets/festival/int_dance_fe/thumbnail.png"),
+            pictures:[]
+        },
+        cityalleys_fe:{
+            thumbnail: require("@/assets/festival/cityalleys_fe/thumbnail.png"),
+            pictures:[]
+        },
+        foodfilm_fe:{
+            thumbnail: require("@/assets/festival/foodfilm_fe/thumbnail.png"),
+            pictures:[]
+        },
+        port_fe:{
+            thumbnail: require("@/assets/festival/port_fe/thumbnail.png"),
+            pictures:[]
+        },
+        int_ad_fe:{
+            thumbnail: require("@/assets/festival/int_ad_fe/thumbnail.png"),
+            pictures:[]
+        },
+        eupseong_fe:{
+            thumbnail: require("@/assets/festival/eupseong_fe/thumbnail.png"),
+            pictures:[]
+        },
+        yeongdobridge_fe:{
+            thumbnail: require("@/assets/festival/yeongdobridge_fe/thumbnail.png"),
+            pictures:[]
+        }
     }
 }
 
