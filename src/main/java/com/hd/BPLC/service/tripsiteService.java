@@ -151,7 +151,7 @@ public class tripsiteService {
             result4.setTotallistnum(repository.getTripsiteSearchTotallistnum(gernename, searchdata));
             result4.setLists(repository.getSummaryList("entertainment"));
 
-            return result1, result2, result3, result4;
+            return result1;
         }
         else {
             return null;

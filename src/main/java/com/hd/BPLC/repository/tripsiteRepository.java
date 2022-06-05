@@ -103,6 +103,6 @@ public class tripsiteRepository {
         jdbctemplate.queryForObject("SELECT count(*) FROM hotal WHERE name || address LIKE '%" + searchdata + "%'", Integer.class);
         jdbctemplate.queryForObject("SELECT count(*) FROM entertainment WHERE name || address LIKE '%" + searchdata + "%'", Integer.class);
 
-        return searchcount;
+        return 0;
     }
 }

@@ -1,5 +1,5 @@
 /**
-	* @fileName  : Classification.vue
+	* @fileName  : Category.vue
 	* @explain : bplc 웹 사이트 page contents 상단 공통 page category component
 	* @author : 송유진 , yoyo6433@naver.com
 	* 부가 설명 : bplc 웹 사이트 page contents 상단 공통 page category(예/ 여행지 > 명소) component

@@ -1,6 +1,7 @@
 package com.hd.BPLC.service;
 
 import com.hd.BPLC.domain.guidebook;
+import com.hd.BPLC.domain.notice;
 import com.hd.BPLC.repository.tripinfoRepository;
 
 public class tripinfoService {
@@ -15,6 +16,15 @@ public class tripinfoService {
 
         result.setTotallistnum(repository.getGuidebookTotallistnum());
         result.setLists(repository.getGuidebookDetail());
+
+        return result;
+    }
+
+    public notice getNoticeinfo() {
+        notice result = new notice();
+
+        result.setTotallistnum(repository.getNoticeTotallistnum());
+        result.setLists(repository.getNoticeDetail());
 
         return result;
     }

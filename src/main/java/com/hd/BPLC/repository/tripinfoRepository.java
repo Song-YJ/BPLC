@@ -2,6 +2,7 @@ package com.hd.BPLC.repository;
 
 
 import com.hd.BPLC.domain.guidebookDetail;
+import com.hd.BPLC.domain.noticeDetail;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -41,4 +42,30 @@ public class tripinfoRepository {
                 "SELECT count(*) FROM guidebook",Integer.class
         );
     }
+
+    public List<noticeDetail> getNoticeDetail(){
+        return jdbctemplate.query(
+                "SELECT * FROM notice ORDER BY writeday desc, id desc",
+                noticeDetailRowmapper()
+        );
+    }
+
+    private RowMapper<noticeDetail> noticeDetailRowmapper() {
+        return(rs, rowNum) -> {
+            int id = rs.getInt("id");
+            String title = rs.getString("title");
+            String contents = rs.getString("contents");
+            String writeday = rs.getString("writeday");
+
+            noticeDetail object = new noticeDetail(id, title, writeday, contents);
+
+            return object;
+        };
+    }
+    public int getNoticeTotallistnum(){
+        return jdbctemplate.queryForObject(
+                "SELECT count(*) FROM notice",Integer.class
+        );
+    }
+
 }

@@ -12,6 +12,7 @@ const HomeView = () => import(/* webpackChunkName: "home" */ '../views/HomeView.
 //추천
 const ThemeView = () => import(/* webpackChunkName: "theme" */ '../views/recommendation/ThemeView.vue')
 const ThemeDetailView = () => import(/* webpackChunkName: "theme" */ '../views/recommendation/ThemeDetailView.vue')
+const StatisticsView = () => import(/* webpackChunkName: "statistics" */ '../views/recommendation/StatisticsView.vue')
 
 //여행지
 const EntertainmentView = () => import(/* webpackChunkName: "entertainment" */ '../views/tripsite/EntertainmentView.vue')
@@ -24,6 +25,7 @@ const SightView = () => import(/* webpackChunkName: sight" */ '../views/tripsite
 const SightDetailView = () => import(/*webpackChunkName: sightdetail*/ '../views/tripsite/SightDetailView.vue')
 
 //여행 정보
+const NoticeView = () => import(/* webpackChunkName: "notice" */ '../views/tripinfo/NoticeView.vue')
 const GuideBookView = () => import(/* webpackChunkName: "guidebook" */ '../views/tripinfo/GuidebookView.vue')
 
 //이벤트
@@ -117,9 +119,17 @@ const routes: Array<RouteRecordRaw> = [
   },
 
   {
-    path: '/recommendation/statistic',
+    path: '/recommendation/statistic/',
     name: 'StatisticCourseRoute',
-    component: HomeView
+    component: HomeView,
+    beforeEnter(to, from, next){
+      window.open('/recommendataion/statistics/newwindow/true', "_blank", "height=780, width=1500, top=50, left=10 resizable=no");
+    }
+  },
+  {
+    path: '/recommendataion/statistics/newwindow/:hidden',
+    name: 'StatisticsCourseViewRoute',
+    component: StatisticsView
   },
 
   //여행지
@@ -226,7 +236,12 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/tripinfo/notice',
     name: 'NoticeRoute',
-    component: HomeView
+    redirect: {name:'NoticeRouteParams', params:{page: 1}}
+  },
+  {
+    path: '/tripinfo/notice/:page',
+    name: 'NoticeRouteParams',
+    component: NoticeView
   },
   {
     path: '/tripinfo/map',

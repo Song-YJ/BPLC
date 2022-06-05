@@ -6,20 +6,19 @@
 	*/
 
 <template>
-  <Header></Header>
+  <Header :hidden="$route.params.hidden"></Header>
   <router-view :key="$route.fullPath"></router-view>
 </template>
 
 <script lang="ts">
   import { defineComponent } from 'vue';
   import Header from '@/components/layout/Header.vue';
-  import Likesbtn from '@/components/layout/Likesbtn.vue'
 
   export default defineComponent({
     name: 'App',
     components:{
-      Header, Likesbtn
-    },
+      Header
+    }
   });
 </script>
 <style>

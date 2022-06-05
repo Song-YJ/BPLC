@@ -1,8 +1,8 @@
 /**
 	* @fileName  : DetailDescription.vue
-	* @explain : bplc 웹 사이트 여행지의 각 detail page의 하단 세부 설명과 사진 혹은 지도 component
+	* @explain : bplc 웹 사이트 이벤트의 각 detail page의 하단 세부 설명과 사진 혹은 지도 component
 	* @author : 박혜원 , phw5883@naver.com
-	* 부가 설명 : bplc 웹 사이트 여행지의 각 detail page 하단 해당 세부 설명과 사진 혹은 지도 component
+	* 부가 설명 : bplc 웹 사이트 이벤트의 각 detail page 하단 해당 세부 설명과 사진 혹은 지도 component
 	*/
 
 <template>
