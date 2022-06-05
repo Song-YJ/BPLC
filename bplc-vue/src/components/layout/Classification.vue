@@ -2,7 +2,7 @@
 	* @fileName  : Classification.vue
 	* @explain : bplc 웹 사이트 여행지 page contents 상단 component
 	* @author : 송유진 , yoyo6433@naver.com
-	* 부가 설명 : bplc 웹 사이트 여행지 page contents 상단 분류 component
+	* 부가 설명 : bplc 웹 사이트 여행지 page contents 상단 분류 component(예 / 랜드마크, 자연 등)
 	*/
 
 <template>

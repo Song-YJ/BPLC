@@ -1,8 +1,8 @@
 /**
 	* @fileName  : Pagination.vue
-	* @explain : bplc 웹 사이트 여행지 page contents 하단 component
+	* @explain : bplc 웹 사이트 각 page contents 하단 component
 	* @author : 송유진 , yoyo6433@naver.com
-	* 부가 설명 : bplc 웹 사이트 여행지 page contents 하단 페이지 component
+	* 부가 설명 : bplc 웹 사이트 각 page contents 하단 페이지 component
 	*/
 
 <template>
