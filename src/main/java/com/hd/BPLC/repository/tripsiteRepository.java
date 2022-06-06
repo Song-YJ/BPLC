@@ -29,18 +29,13 @@ public class tripsiteRepository {
     }
 
     public List<tripsiteDetail> getTripsiteSearchList(String gernename, String searchdata){
-        if(gernename.equals("all") || gernename.equals("tripsite")){
-            return jdbctemplate.query(
-                    "SELECT id, name, address, photo_path FROM sight WHERE name LIKE \'%" + searchdata + "%\' or address LIKE \'%" + searchdata + "%\' + " +
-                            "UNION SELECT id, name, address, photo_path FROM food WHERE name LIKE \'%" + searchdata + "%\' or address LIKE \'%" + searchdata + "%\' +" +
-                            "UNION SELECT id, name, address, photo_path FROM hotel WHERE name LIKE \'%" + searchdata + "%\' or address LIKE \'%" + searchdata + "%\' +" +
-                            "UNION SELECT id, name, address, photo_path FROM entertainment WHERE name LIKE \'%" + searchdata + "%\' or address LIKE \'%" + searchdata + "%\'",
-                    summaryRowmapper()
-            );
-        }
-        else {
-            return null;
-        }
+        return jdbctemplate.query(
+            "SELECT id, name, address, photo_path FROM sight WHERE name LIKE \'%" + searchdata + "%\' OR address LIKE \'%" + searchdata + "%\'" +
+                    "UNION SELECT id, name, address, photo_path FROM food WHERE name LIKE \'%" + searchdata + "%\' OR address LIKE \'%" + searchdata + "%\'" +
+                    "UNION SELECT id, name, address, photo_path FROM hotel WHERE name LIKE \'%" + searchdata + "%\' OR address LIKE \'%" + searchdata + "%\'" +
+                    "UNION SELECT id, name, address, photo_path FROM entertainment WHERE name LIKE \'%" + searchdata + "%\' OR address LIKE \'%" + searchdata + "%\'",
+            summaryRowmapper()
+        );
     }
 
     public tripsiteDetail getContentDetail(String tablename, String id){

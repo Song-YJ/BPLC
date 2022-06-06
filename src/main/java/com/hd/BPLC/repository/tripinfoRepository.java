@@ -79,7 +79,7 @@ public class tripinfoRepository {
     public List<noticeDetail> getNoticeSearch(String gernename, String searchdata){
         if(gernename.equals("all") || gernename.equals("notice")) {
             return jdbctemplate.query(
-                    "SELECT * FROM notice WHERE name LIKE \'%" + searchdata + "%\'",
+                    "SELECT * FROM notice WHERE title LIKE \'%" + searchdata + "%\'",
                     noticeDetailRowmapper()
             );
         }
@@ -110,7 +110,7 @@ public class tripinfoRepository {
     public int getNoticeTotallistnum(String gernename, String searchdata){
         if(gernename.equals("all") || gernename.equals("notice")) {
             return jdbctemplate.queryForObject(
-                    "SELECT count(*) FROM notice WHERE name LIKE \'%" + searchdata + "%\'",
+                    "SELECT count(*) FROM notice WHERE title LIKE \'%" + searchdata + "%\'",
                     Integer.class
             );
         }

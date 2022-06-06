@@ -73,7 +73,7 @@ public class eventsiteService {
     public eventsiteList getEventSearch(String gernename, String searchdata){
         eventsiteList result = new eventsiteList();
 
-        if(gernename.equals("all") || gernename.equals("theme")) {
+        if(gernename.equals("all") || gernename.equals("event")) {
             result.setTotallistnum(repository.getEventSearchTotallistnum(gernename, searchdata));
             result.setLists(repository.getEventSearch(gernename, searchdata));
             return result;

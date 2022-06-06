@@ -55,7 +55,7 @@ export default defineComponent({
       this.$router.push({name: 'home'})
     },
     searchEvent: function(){
-      this.$router.push({name:'SearchRoute', params:{'searchdata' : String(this.searchdata)}})
+      this.$router.push({name:'SearchRoute', params:{'searchdata' : String(this.searchdata), gernename: 'all'}})
     }
   }, 
   data(){

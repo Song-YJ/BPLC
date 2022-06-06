@@ -6,94 +6,60 @@
 	*/
 
 <template>
-    <div class="contents_back">
+<div class="contents_back">
         <div class="contents_wrap">
-            <Category MainC="검색" :SubC=searchdata></Category>
-            <Classification :classificationObject="getClassificationInfo()"></Classification>
-            <p class="search-total-text">
-                <b>{{searchdata}}</b>
-                " 에 대한 검색결과는 총 "
-                <b>{{eventlistinfo.totallistnum + themelistinfo.totallistnum + tripsitelistinfo.totallistnum + guidebooklistinfo.totallistnum + noticeistinfo.totallistnum}}</b>
-                "건 입니다."
-            </p>
-            <!--이벤트 검색 결과-->
-            <div class="searchreseult" id="eventsearchresult">
-                <h3 class="search-type-title">> 이벤트 ( "<b>{{eventlistinfo.totallistnum}}</b>"건)</h3>
-                <div class="card_container" v-if="eventlistinfo.totallistnum > 0">
-                    <Cards :eventlistinfo="eventlistinfo" routename="SearchRoute"></Cards>
+            <ContentsHead headname="통합검색" :headdescription="'검색어: ' + searchdata"></ContentsHead>
+            <div class="contents">
+                <Category MainC="검색"></Category>
+                <Classification :classificationObject="getClassificationInfo()"></Classification>
+                <div class="search-total-text">
+                    <p class="search-text">
+                        <b>{{searchdata}}</b>
+                        에 대한 검색결과는 총 
+                        <b>{{eventlistinfo.totallistnum + themelistinfo.totallistnum + tripsitelistinfo.totallistnum + guidebooklistinfo.totallistnum}}</b>
+                    건 입니다.
+                    </p>
                 </div>
-                <div v-if="eventlistinfo.totallistnum > 0">
-                    <Pagination :eventlistinfo="eventlistinfo"
-                    routename="SearchRoute"></Pagination>
+                <!--이벤트 - 축제&행사, 전시 관련 검색 결과-->
+                <div class="contentsdetail" id="event" v-if="eventlistinfo.totallistnum > 0">
+                    <h2 class="search-type-title">> 이벤트 ( <b>{{eventlistinfo.totallistnum}}</b> 건)</h2>
+                    <SearchCard :listinfo="eventlistinfo.lists"></SearchCard>
                 </div>
-            </div>
-            <!--테마별 추천 검색 결과-->
-            <div class="searchreseult" id="themesearchresult">
-                <h3 class="search-type-title">> 테마별 추천 ( "<b>{{themelistinfo.totallistnum}}</b>"건)</h3>
-                <div id="theme">
-                    <div class="card_container" v-if="themelistinfo.totallistnum > 0">
-                        <ThemeCards :themelistinfo="themelistinfo" routename="SearchRoute"></ThemeCards>
-                    </div>
-                    <div v-if="themelistinfo.totallistnum > 0">
-                        <Pagination :themelistinfo="themelistinfo"
-                        routename="SearchRoute"></Pagination>
-                    </div>
+                <!--추천 - 테마별 추천 관련 검색 결과-->
+                <div class="contentsdetail" id="theme" v-if="themelistinfo.totallistnum > 0">
+                    <h2 class="search-type-title">> 테마별 추천 ( <b>{{themelistinfo.totallistnum}}</b> 건)</h2>
+                    <SearchCard :listinfo="themelistinfo.lists"></SearchCard>
                 </div>
-            </div>
-            <!--여행지 검색 결과-->
-            <div class="searchreseult" id="tripsitesearchresult">
-                <h3 class="search-type-title">> 여행지 ( "<b>{{tripsitelistinfo.totallistnum}}</b>"건)</h3>
-                <div class="card_container" v-if="tripsitelistinfo.totallistnum > 0">
-                        <Cards :tripsitelistinfo="tripsitelistinfo" routename="SearchRoute"></Cards>
+                <!--여행지 - 명소, 음식, 호텔, 엔터테이먼트 관련 검색 결과-->
+                <div class="contentsdetail" id="tripsite" v-if="tripsitelistinfo.totallistnum > 0">
+                    <h2 class="search-type-title">> 여행지 ( <b>{{tripsitelistinfo.totallistnum}}</b> 건)</h2>
+                    <SearchCard :listinfo="tripsitelistinfo.lists"></SearchCard>
                 </div>
-                <div v-if="tripsitelistinfo.totallistnum > 0">
-                    <Pagination :tripsitelistinfo="tripsitelistinfo"
-                    routename="SearchRoute"></Pagination>
-                </div>
-            </div>
-
-            <!--수정 필요-->
-            <!--가이드북 검색 결과-->
-            <div class="searchreseult" id="tripinfosearchresult">
-                <h3 class="search-type-title">> 가이드북 ( "<b>{{guidebooklistinfo.totallistnum}}</b>"건)</h3>
-                <div class="card_container" v-if="guidebooklistinfo.totallistnum > 0">
-                        <GuidebookCards :guidebooklistinfo="guidebooklistinfo"></GuidebookCards>
-                </div>
-                <div v-if="guidebooklistinfo.totallistnum > 0">
-                    <Pagination :guidebooklistinfo="guidebooklistinfo"
-                    routename="SearchRoute"></Pagination>
-                </div>
-            </div>
-
-            <!--공지사항 검색 결과-->
-            <div class="searchreseult" id="tripinfosearchresult">
-                <h3 class="search-type-title">> 공지사항 ( "<b>{{noticelistinfo.totallistnum}}</b>"건)</h3>
-                <div class="card_container" v-if="noticelistinfo.totallistnum > 0">
-                        <GuidebookCards :noticelistinfo="noticelistinfo"></GuidebookCards>
-                </div>
-                <div v-if="noticelistinfo.totallistnum > 0">
-                    <Pagination :noticelistinfo="noticelistinfo"
-                    routename="SearchRoute"></Pagination>
+                <!--여행정보 - 가이드북 관련 검색 결과-->
+                <div class="contentsdetail" id="guidebook" v-if="guidebooklistinfo.totallistnum > 0">
+                    <h2 class="search-type-title">> 가이드북 ( <b>{{guidebooklistinfo.totallistnum}}</b> 건)</h2>
+                    <SearchCard :listinfo="guidebooklistinfo.lists"></SearchCard>
                 </div>
             </div>
         </div>
     </div>
 </template>
+
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Cards from '@/components/layout/Cards.vue'
-import ThemeCards from '@/components/recommendation/ThemeCards.vue'
+import SearchCard from '@/components/search/SearchCard.vue'
+import ContentsHead from '@/components/layout/ContentsHead.vue'
 import Category from '@/components/layout/Catergory.vue'
-import Pagination from '@/components/layout/Pagination.vue'
 import Classification from '@/components/layout/Classification.vue'
 
 export default defineComponent({
-  name: 'SearchTotalView',
+  name: 'SearchView',
   components:{
-      Cards, ThemeCards, Category, Pagination, Classification
+      SearchCard, ContentsHead, Category, Classification
   },
   data(){
      return{
+         searchdata: String(this.$route.params.searchdata),
          eventlistinfo: {
              totallistnum: 0,
              category: "event",
@@ -114,11 +80,6 @@ export default defineComponent({
              category: "guidebook",
              lists: []
         },
-        noticeistinfo: {
-             totallistnum: 0,
-             category: "notice",
-             lists: []
-        },
      }
   },
   mounted(){
@@ -126,7 +87,6 @@ export default defineComponent({
       this.getThemeListInfo();
       this.getTripsiteListInfo();
       this.getGuidebookListInfo();
-      this.getNoticeListInfo();
   },
   methods:{
       getEventListInfo: async function(){
@@ -221,51 +181,33 @@ export default defineComponent({
           this.guidebooklistinfo.totallistnum = tln;
           this.guidebooklistinfo.lists = ls;
       },
-      getNoticeListInfo: async function(){
-          let tln = 0;
-          let ls = [];
-
-          //axios
-          const axios = require('axios').default;
-          await axios.get('/dao/search/notice', {
-              params: {
-                gernename: String(this.$route.params.gernename),
-                searchdata: String(this.$route.params.searchdata)
-              }
-          })
-          .then(function (response) {
-              tln = response.data.totallistnum;
-              ls = response.data.lists;
-          })
-          .catch(function (error) {
-              console.log(error);
-          });
-
-          this.guidebooklistinfo.totallistnum = tln;
-          this.guidebooklistinfo.lists = ls;
-      },
 
       getClassificationInfo: function(){
           let cinfo = [
               {
                   name: "전체",
                   engname: "all",
-                  routename: "SearchTotalRouteParams"
+                  routename: "SearchRoute"
               },
               {
-                  name: "추천",
-                  engname: "recommendation",
-                  routename: "SearchTotalRouteParams"
+                  name: "이벤트",
+                  engname: "event",
+                  routename: "SearchRoute"
+              },
+              {
+                  name: "테마별 추천",
+                  engname: "theme",
+                  routename: "SearchRoute"
               },
               {
                   name: "여행지",
                   engname: "tripsite",
-                  routename: "SearchTotalRouteParams"
+                  routename: "SearchRoute"
               },
               {
-                  name: "기타",
-                  engname: "extra",
-                  routename: "SearchTotalRouteParams"
+                  name: "가이드북",
+                  engname: "guidebook",
+                  routename: "SearchRoute"
               }
           ]
 
@@ -275,10 +217,12 @@ export default defineComponent({
   
 });
 </script>
+
 <style scoped>
 .contents_back{
   background: white;
 
+  background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ),url(@/assets/searchresult.png);
   background-size: 100vw;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -294,16 +238,8 @@ export default defineComponent({
     width: 100%;
     padding: 5%;
     background: white;
+    height: auto;
 
     text-align: left;
-}
-
-.contents_back .contents_wrap .dataloading{
-    height: 110vh;
-}
-
-.contents_wrap .card_container{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 </style>
