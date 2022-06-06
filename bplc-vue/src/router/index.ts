@@ -34,6 +34,9 @@ const ExhibitionDetailView = () => import(/* webpackChunkName: "exhibitiondetail
 const FestivalView = () => import(/* webpackChunkName: "festival" */ '../views/eventsite/FestivalView.vue')
 const FestivalDetailView = () => import(/* webpackChunkName: "festivaldetail*/ '../views/eventsite/FestivalDetailView.vue')
 
+//통합검색 -> 고치기
+const SearchView = () => import(/* webpackChunkName: ""*/ '../views/HomeView.vue')
+
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -270,6 +273,17 @@ const routes: Array<RouteRecordRaw> = [
     beforeEnter(to, from , next) {
       window.open("https://www.weather.go.kr/w/weather/forecast/short-term.do#");
     }
+  },
+
+  //통합검색
+  {
+    path: '/search/',
+    redirect: {name:'SearchRoute', params:{'searchdata': String('')}}
+  },
+  {
+    path: '/search/:searchdata',
+    name: 'SearchRoute',
+    component: SearchView
   },
 
   //위의 주소 외
