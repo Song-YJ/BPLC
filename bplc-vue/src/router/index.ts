@@ -35,7 +35,7 @@ const FestivalView = () => import(/* webpackChunkName: "festival" */ '../views/e
 const FestivalDetailView = () => import(/* webpackChunkName: "festivaldetail*/ '../views/eventsite/FestivalDetailView.vue')
 
 //통합검색 -> 고치기
-const SearchView = () => import(/* webpackChunkName: ""*/ '../views/HomeView.vue')
+const SearchView = () => import(/* webpackChunkName: ""*/ '../views/Test.vue')
 
 const routes: Array<RouteRecordRaw> = [
   {
