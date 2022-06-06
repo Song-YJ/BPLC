@@ -69,4 +69,17 @@ public class eventsiteService {
         int result = repository.changeType2(curdate, tablename);
         return result;
     }
+
+    public eventsiteList getEventSearch(String gernename, String searchdata){
+        eventsiteList result = new eventsiteList();
+
+        if(gernename.equals("all") || gernename.equals("theme")) {
+            result.setTotallistnum(repository.getEventSearchTotallistnum(gernename, searchdata));
+            result.setLists(repository.getEventSearch(gernename, searchdata));
+            return result;
+        }
+        else {
+            return null;
+        }
+    }
 }

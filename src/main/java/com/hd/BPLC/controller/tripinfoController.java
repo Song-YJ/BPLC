@@ -24,8 +24,8 @@ public class tripinfoController {
 
     @GetMapping("/download/guidebook")
     public void downloadGuidebook(@RequestParam(value="filename")String filename, HttpServletResponse response) throws IOException {
-        String path = "C:\\Users\\송유진\\Desktop\\deu\\4-1\\캡스톤디자인\\BPLC\\guidebook\\" + filename + ".pdf";
-        //String path = "C:\\Users\\bmg12\\Desktop\\bplcdb\\guidebook\\guidebook\\" + filename + ".pdf";
+        //String path = "C:\\Users\\송유진\\Desktop\\deu\\4-1\\캡스톤디자인\\BPLC\\guidebook\\" + filename + ".pdf";
+        String path = "C:\\Users\\bmg12\\Desktop\\bplcdb\\guidebook\\guidebook\\" + filename + ".pdf";
         //String path;
 
         byte[] fileByte = FileUtils.readFileToByteArray(new File(path));
@@ -51,6 +51,22 @@ public class tripinfoController {
     @ResponseBody
     public notice getNotice(){
         notice result = service.getNoticeinfo();
+
+        return result;
+    }
+
+    @GetMapping("/dao/search/guidebook")
+    @ResponseBody
+    public guidebook getGuidebookSearch(@RequestParam(value="gernename")String gernename, @RequestParam(value="searchdata")String searchdata){
+        guidebook result = service.getGuidebookSearch(gernename, searchdata);
+
+        return result;
+    }
+
+    @GetMapping("/dao/search/notice")
+    @ResponseBody
+    public notice getNoticeSearch(@RequestParam(value="gernename")String gernename, @RequestParam(value="searchdata")String searchdata){
+        notice result = service.getNoticeSearch(gernename, searchdata);
 
         return result;
     }

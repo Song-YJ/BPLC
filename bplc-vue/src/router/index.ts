@@ -34,6 +34,9 @@ const ExhibitionDetailView = () => import(/* webpackChunkName: "exhibitiondetail
 const FestivalView = () => import(/* webpackChunkName: "festival" */ '../views/eventsite/FestivalView.vue')
 const FestivalDetailView = () => import(/* webpackChunkName: "festivaldetail*/ '../views/eventsite/FestivalDetailView.vue')
 
+//통합검색 -> 고치기
+const SearchView = () => import(/* webpackChunkName: ""*/ '../views/search/SearchView.vue')
+
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -297,6 +300,17 @@ const routes: Array<RouteRecordRaw> = [
     path: '/totalSearch/themedetail/:filename',
     name: 'ThemeDetailRoute',
     component: ThemeDetailView,
+  },
+
+  //통합검색
+  {
+    path: '/search/',
+    redirect: {name:'SearchRoute', params:{'searchdata': String(''), gernename:'all'}}
+  },
+  {
+    path: '/search/:searchdata/:gernename',
+    name: 'SearchRoute',
+    component: SearchView
   },
 
   //위의 주소 외

@@ -28,4 +28,30 @@ public class tripinfoService {
 
         return result;
     }
+
+    public guidebook getGuidebookSearch(String gernename, String searchdata){
+        guidebook result = new guidebook();
+
+        if(gernename.equals("all") || gernename.equals("guidebook")) {
+            result.setTotallistnum(repository.getGuidebookTotallistnum(gernename, searchdata));
+            result.setLists(repository.getGuidebookSearch(gernename, searchdata));
+            return result;
+        }
+        else {
+            return null;
+        }
+    }
+
+    public notice getNoticeSearch(String gernename, String searchdata){
+        notice result = new notice();
+
+        if(gernename.equals("all") || gernename.equals("notice")) {
+            result.setTotallistnum(repository.getNoticeTotallistnum(gernename, searchdata));
+            result.setLists(repository.getNoticeSearch(gernename, searchdata));
+            return result;
+        }
+        else {
+            return null;
+        }
+    }
 }

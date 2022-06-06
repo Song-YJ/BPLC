@@ -49,7 +49,7 @@ public class themeRepository {
     public List<themeDetail> getThemeSearch(String gernename, String searchdata){
         if(gernename.equals("all") || gernename.equals("theme")) {
             return jdbctemplate.query(
-                    "SELECT * FROM theme_course WHERE name || explanation LIKE '%" + searchdata + "%'",
+                    "SELECT * FROM theme_course WHERE name LIKE \'%" + searchdata + "%\' OR explanation LIKE \'%" + searchdata + "%\'",
                     summaryRowmapper()
             );
         }
@@ -95,17 +95,17 @@ public class themeRepository {
         );
     }
 
-    //정렬 조건 있을떄 리스트 개수인데 여기선 필요가 없는데..? 사용하는거 보고 지워야할 듯
+    //정렬 조건 있을떄 리스트 개수
     public int getThemeTotallistnum(String gernename){
         return jdbctemplate.queryForObject(
                 "SELECT count(*) FROM theme_course", Integer.class
         );
     }
 
-    public int getThemeTotallistnum(String gernename, String searchdata){
+    public int getThemeSearchTotallistnum(String gernename, String searchdata){
         if(gernename.equals("all") || gernename.equals("theme")) {
             return jdbctemplate.queryForObject(
-                    "SELECT count(*) FROM theme_course WHERE name || explanation LIKE '%" + searchdata + "%'",
+                    "SELECT count(*) FROM theme_course WHERE name LIKE \'%" + searchdata + "%\' OR explanation LIKE \'%" + searchdata + "%\'",
                     Integer.class
             );
         }

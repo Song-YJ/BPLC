@@ -70,4 +70,12 @@ public class eventController {
 
         return result;
     }
+
+    @GetMapping("/dao/search/event")
+    @ResponseBody
+    public eventsiteList getEventSearch(@RequestParam(value="gernename")String gernename, @RequestParam(value="searchdata")String searchdata){
+        eventsiteList result = service.getEventSearch(gernename, searchdata);
+
+        return result;
+    }
 }

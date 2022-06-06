@@ -28,6 +28,21 @@ public class tripsiteRepository {
         );
     }
 
+    public List<tripsiteDetail> getTripsiteSearchList(String gernename, String searchdata){
+        if(gernename.equals("all") || gernename.equals("tripsite")){
+            return jdbctemplate.query(
+                    "SELECT id, name, address, photo_path FROM sight WHERE name LIKE \'%" + searchdata + "%\' or address LIKE \'%" + searchdata + "%\' + " +
+                            "UNION SELECT id, name, address, photo_path FROM food WHERE name LIKE \'%" + searchdata + "%\' or address LIKE \'%" + searchdata + "%\' +" +
+                            "UNION SELECT id, name, address, photo_path FROM hotel WHERE name LIKE \'%" + searchdata + "%\' or address LIKE \'%" + searchdata + "%\' +" +
+                            "UNION SELECT id, name, address, photo_path FROM entertainment WHERE name LIKE \'%" + searchdata + "%\' or address LIKE \'%" + searchdata + "%\'",
+                    summaryRowmapper()
+            );
+        }
+        else {
+            return null;
+        }
+    }
+
     public tripsiteDetail getContentDetail(String tablename, String id){
         return jdbctemplate.queryForObject(
                 "SELECT * FROM " + tablename + " WHERE id = ?",
@@ -96,13 +111,17 @@ public class tripsiteRepository {
     }
 
     public int getTripsiteSearchTotallistnum(String gernename, String searchdata){
-        int searchcount;
-
-        jdbctemplate.queryForObject("SELECT count(*) FROM sight WHERE name || address LIKE '%" + searchdata + "%'", Integer.class);
-        jdbctemplate.queryForObject("SELECT count(*) FROM food WHERE name || address LIKE '%" + searchdata + "%'", Integer.class);
-        jdbctemplate.queryForObject("SELECT count(*) FROM hotal WHERE name || address LIKE '%" + searchdata + "%'", Integer.class);
-        jdbctemplate.queryForObject("SELECT count(*) FROM entertainment WHERE name || address LIKE '%" + searchdata + "%'", Integer.class);
-
-        return 0;
+        if(gernename.equals("all") || gernename.equals("tripsite")){
+            return jdbctemplate.queryForObject(
+                    "SELECT((SELECT count(*) FROM sight WHERE name LIKE \'%" + searchdata + "%\' or address LIKE \'%" + searchdata + "%\') + " +
+                            "(SELECT count(*) FROM food WHERE name LIKE \'%" + searchdata + "%\' or address LIKE \'%" + searchdata + "%\') + " +
+                            "(SELECT count(*) FROM hotel WHERE name LIKE \'%" + searchdata + "%\' or address LIKE \'%" + searchdata + "%\') + " +
+                            "(SELECT count(*) FROM entertainment WHERE name LIKE \'%" + searchdata + "%\' or address LIKE \'%" + searchdata + "%\'))",
+                    Integer.class
+            );
+        }
+        else {
+            return 0;
+        }
     }
 }

@@ -1,7 +1,6 @@
 package com.hd.BPLC.repository;
 
 import com.hd.BPLC.domain.eventsiteDetail;
-import com.hd.BPLC.domain.tripsiteDetail;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -39,6 +38,20 @@ public class eventsiteRepository {
         return jdbctemplate.update(
                 "UPDATE " + tablename + " SET " + tablename + ".type = \'진행중\' WHERE start_date < \'" + curdate + "\' AND end_date > \'" + curdate + "\'"
         );
+    }
+
+    //검색 결과
+    public List<eventsiteDetail> getEventSearch(String gernename, String searchdata){
+        if(gernename.equals("all") || gernename.equals("event")) {
+            return jdbctemplate.query(
+                    "SELECT id, name, start_date, end_date, photo_path FROM exhibition WHERE name LIKE \'%" + searchdata + "%\' OR start_date LIKE \'%" + searchdata + "%\' OR end_date LIKE \'%" + searchdata + "%\'" +
+                    "UNION SELECT id, name, start_date, end_date, photo_path FROM festival WHERE name LIKE \'%" + searchdata + "%\' OR start_date LIKE \'%" + searchdata + "%\' OR end_date LIKE \'%" + searchdata + "%\'",
+                    summaryRowmapper()
+            );
+        }
+        else {
+            return null;
+        }
     }
 
     private RowMapper<eventsiteDetail> summaryRowmapper(){
@@ -83,5 +96,18 @@ public class eventsiteRepository {
         return jdbctemplate.queryForObject(
                 "SELECT count(*) FROM " + tablename + " WHERE " + tablename + ".type = ?",Integer.class, gernename
         );
+    }
+
+    public int getEventSearchTotallistnum(String gernename, String searchdata){
+        if(gernename.equals("all") || gernename.equals("event")) {
+            return jdbctemplate.queryForObject(
+                    "SELECT((SELECT count(*) FROM exhibition WHERE name LIKE \'%" + searchdata + "%\' OR start_date LIKE \'%" + searchdata + "%\' OR end_date LIKE \'%" + searchdata + "%\') + " +
+                            "(SELECT count(*) FROM festival WHERE name LIKE \'%" + searchdata + "%\' OR start_date LIKE \'%" + searchdata + "%\' OR end_date LIKE \'%" + searchdata + "%\'))",
+                    Integer.class
+            );
+        }
+        else {
+            return 0;
+        }
     }
 }

@@ -42,7 +42,7 @@ public class themeService {
         theme result = new theme();
 
         if(gernename.equals("all") || gernename.equals("theme")) {
-            result.setTotallistnum(repository.getThemeTotallistnum(gernename, searchdata));
+            result.setTotallistnum(repository.getThemeSearchTotallistnum(gernename, searchdata));
             result.setLists(repository.getThemeSearch(gernename, searchdata));
             return result;
         }

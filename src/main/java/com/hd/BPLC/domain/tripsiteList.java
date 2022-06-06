@@ -7,6 +7,9 @@ public class tripsiteList {
     private String category;
     private List<tripsiteDetail> lists;
 
+    public tripsiteList(){
+
+    }
     public tripsiteList(String category){
         this.category = category;
     }

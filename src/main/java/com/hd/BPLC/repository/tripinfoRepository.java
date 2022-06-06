@@ -23,6 +23,19 @@ public class tripinfoRepository {
         );
     }
 
+    //검색 결과
+    public List<guidebookDetail> getGuidebookSearch(String gernename, String searchdata){
+        if(gernename.equals("all") || gernename.equals("guidebook")) {
+            return jdbctemplate.query(
+                    "SELECT * FROM guidebook WHERE name LIKE \'%" + searchdata + "%\' OR explanation LIKE \'%" + searchdata + "%\'",
+                    guidebookDetailRowmapper()
+            );
+        }
+        else {
+            return null;
+        }
+    }
+
     private RowMapper<guidebookDetail> guidebookDetailRowmapper() {
         return(rs, rowNum) -> {
             String id = rs.getString("id");
@@ -43,11 +56,36 @@ public class tripinfoRepository {
         );
     }
 
+    public int getGuidebookTotallistnum(String gernename, String searchdata){
+        if(gernename.equals("all") || gernename.equals("guidebook")) {
+            return jdbctemplate.queryForObject(
+                    "SELECT count(*) FROM guidebook WHERE name LIKE \'%" + searchdata + "%\' OR explanation LIKE \'%" + searchdata + "%\'",
+                    Integer.class
+            );
+        }
+        else {
+            return 0;
+        }
+    }
+
     public List<noticeDetail> getNoticeDetail(){
         return jdbctemplate.query(
                 "SELECT * FROM notice ORDER BY writeday desc, id desc",
                 noticeDetailRowmapper()
         );
+    }
+
+    //검색 결과
+    public List<noticeDetail> getNoticeSearch(String gernename, String searchdata){
+        if(gernename.equals("all") || gernename.equals("notice")) {
+            return jdbctemplate.query(
+                    "SELECT * FROM notice WHERE name LIKE \'%" + searchdata + "%\'",
+                    noticeDetailRowmapper()
+            );
+        }
+        else {
+            return null;
+        }
     }
 
     private RowMapper<noticeDetail> noticeDetailRowmapper() {
@@ -62,10 +100,22 @@ public class tripinfoRepository {
             return object;
         };
     }
+
     public int getNoticeTotallistnum(){
         return jdbctemplate.queryForObject(
                 "SELECT count(*) FROM notice",Integer.class
         );
     }
 
+    public int getNoticeTotallistnum(String gernename, String searchdata){
+        if(gernename.equals("all") || gernename.equals("notice")) {
+            return jdbctemplate.queryForObject(
+                    "SELECT count(*) FROM notice WHERE name LIKE \'%" + searchdata + "%\'",
+                    Integer.class
+            );
+        }
+        else {
+            return 0;
+        }
+    }
 }
