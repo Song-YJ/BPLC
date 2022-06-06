@@ -38,7 +38,8 @@ public class tripinfoService {
             return result;
         }
         else {
-            return null;
+            result.setTotallistnum(repository.getGuidebookTotallistnum(gernename, searchdata));
+            return result;
         }
     }
 
@@ -51,7 +52,8 @@ public class tripinfoService {
             return result;
         }
         else {
-            return null;
+            result.setTotallistnum(repository.getNoticeTotallistnum(gernename, searchdata));
+            return result;
         }
     }
 }

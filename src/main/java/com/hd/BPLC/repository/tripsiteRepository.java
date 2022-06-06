@@ -106,17 +106,12 @@ public class tripsiteRepository {
     }
 
     public int getTripsiteSearchTotallistnum(String gernename, String searchdata){
-        if(gernename.equals("all") || gernename.equals("tripsite")){
-            return jdbctemplate.queryForObject(
-                    "SELECT((SELECT count(*) FROM sight WHERE name LIKE \'%" + searchdata + "%\' or address LIKE \'%" + searchdata + "%\') + " +
-                            "(SELECT count(*) FROM food WHERE name LIKE \'%" + searchdata + "%\' or address LIKE \'%" + searchdata + "%\') + " +
-                            "(SELECT count(*) FROM hotel WHERE name LIKE \'%" + searchdata + "%\' or address LIKE \'%" + searchdata + "%\') + " +
-                            "(SELECT count(*) FROM entertainment WHERE name LIKE \'%" + searchdata + "%\' or address LIKE \'%" + searchdata + "%\'))",
-                    Integer.class
-            );
-        }
-        else {
-            return 0;
-        }
+        return jdbctemplate.queryForObject(
+                "SELECT((SELECT count(*) FROM sight WHERE name LIKE \'%" + searchdata + "%\' or address LIKE \'%" + searchdata + "%\') + " +
+                        "(SELECT count(*) FROM food WHERE name LIKE \'%" + searchdata + "%\' or address LIKE \'%" + searchdata + "%\') + " +
+                        "(SELECT count(*) FROM hotel WHERE name LIKE \'%" + searchdata + "%\' or address LIKE \'%" + searchdata + "%\') + " +
+                        "(SELECT count(*) FROM entertainment WHERE name LIKE \'%" + searchdata + "%\' or address LIKE \'%" + searchdata + "%\'))",
+                Integer.class
+        );
     }
 }

@@ -21,22 +21,22 @@
                     </p>
                 </div>
                 <!--이벤트 - 축제&행사, 전시 관련 검색 결과-->
-                <div class="contentsdetail" id="event" v-if="eventlistinfo.totallistnum > 0">
+                <div class="contentsdetail" id="event" v-if="(eventlistinfo.totallistnum > 0) && (this.$route.params.gernename === 'all' || this.$route.params.gernename === 'event')">
                     <h2 class="search-type-title">> 이벤트 ( <b>{{eventlistinfo.totallistnum}}</b> 건)</h2>
                     <SearchCard :listinfo="eventlistinfo.lists"></SearchCard>
                 </div>
                 <!--추천 - 테마별 추천 관련 검색 결과-->
-                <div class="contentsdetail" id="theme" v-if="themelistinfo.totallistnum > 0">
+                <div class="contentsdetail" id="theme" v-if="(themelistinfo.totallistnum > 0) && (this.$route.params.gernename === 'all' || this.$route.params.gernename === 'theme')">
                     <h2 class="search-type-title">> 테마별 추천 ( <b>{{themelistinfo.totallistnum}}</b> 건)</h2>
                     <SearchCard :listinfo="themelistinfo.lists"></SearchCard>
                 </div>
                 <!--여행지 - 명소, 음식, 호텔, 엔터테이먼트 관련 검색 결과-->
-                <div class="contentsdetail" id="tripsite" v-if="tripsitelistinfo.totallistnum > 0">
+                <div class="contentsdetail" id="tripsite" v-if="(tripsitelistinfo.totallistnum > 0) && (this.$route.params.gernename === 'all' || this.$route.params.gernename === 'tripsite')">
                     <h2 class="search-type-title">> 여행지 ( <b>{{tripsitelistinfo.totallistnum}}</b> 건)</h2>
                     <SearchCard :listinfo="tripsitelistinfo.lists"></SearchCard>
                 </div>
                 <!--여행정보 - 가이드북 관련 검색 결과-->
-                <div class="contentsdetail" id="guidebook" v-if="guidebooklistinfo.totallistnum > 0">
+                <div class="contentsdetail" id="guidebook" v-if="(guidebooklistinfo.totallistnum > 0) && (this.$route.params.gernename === 'all' || this.$route.params.gernename === 'guidebook')">
                     <h2 class="search-type-title">> 가이드북 ( <b>{{guidebooklistinfo.totallistnum}}</b> 건)</h2>
                     <SearchCard :listinfo="guidebooklistinfo.lists"></SearchCard>
                 </div>

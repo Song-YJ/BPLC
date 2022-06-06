@@ -103,14 +103,9 @@ public class themeRepository {
     }
 
     public int getThemeSearchTotallistnum(String gernename, String searchdata){
-        if(gernename.equals("all") || gernename.equals("theme")) {
-            return jdbctemplate.queryForObject(
-                    "SELECT count(*) FROM theme_course WHERE name LIKE \'%" + searchdata + "%\' OR explanation LIKE \'%" + searchdata + "%\'",
-                    Integer.class
-            );
-        }
-        else {
-            return 0;
-        }
+        return jdbctemplate.queryForObject(
+                "SELECT count(*) FROM theme_course WHERE name LIKE \'%" + searchdata + "%\' OR explanation LIKE \'%" + searchdata + "%\'",
+                Integer.class
+        );
     }
 }

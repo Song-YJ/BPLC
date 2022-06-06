@@ -79,7 +79,8 @@ public class eventsiteService {
             return result;
         }
         else {
-            return null;
+            result.setTotallistnum(repository.getEventSearchTotallistnum(gernename, searchdata));
+            return result;
         }
     }
 }

@@ -57,15 +57,10 @@ public class tripinfoRepository {
     }
 
     public int getGuidebookTotallistnum(String gernename, String searchdata){
-        if(gernename.equals("all") || gernename.equals("guidebook")) {
-            return jdbctemplate.queryForObject(
-                    "SELECT count(*) FROM guidebook WHERE name LIKE \'%" + searchdata + "%\' OR explanation LIKE \'%" + searchdata + "%\'",
-                    Integer.class
-            );
-        }
-        else {
-            return 0;
-        }
+        return jdbctemplate.queryForObject(
+                "SELECT count(*) FROM guidebook WHERE name LIKE \'%" + searchdata + "%\' OR explanation LIKE \'%" + searchdata + "%\'",
+                Integer.class
+        );
     }
 
     public List<noticeDetail> getNoticeDetail(){
@@ -108,14 +103,9 @@ public class tripinfoRepository {
     }
 
     public int getNoticeTotallistnum(String gernename, String searchdata){
-        if(gernename.equals("all") || gernename.equals("notice")) {
-            return jdbctemplate.queryForObject(
-                    "SELECT count(*) FROM notice WHERE title LIKE \'%" + searchdata + "%\'",
-                    Integer.class
-            );
-        }
-        else {
-            return 0;
-        }
+        return jdbctemplate.queryForObject(
+                "SELECT count(*) FROM notice WHERE title LIKE \'%" + searchdata + "%\'",
+                Integer.class
+        );
     }
 }

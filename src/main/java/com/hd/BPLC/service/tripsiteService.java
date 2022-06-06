@@ -145,7 +145,9 @@ public class tripsiteService {
             return result;
         }
         else {
-            return null;
+            result.setTotallistnum(repository.getTripsiteSearchTotallistnum(gernename, searchdata));
+
+            return result;
         }
     }
 }

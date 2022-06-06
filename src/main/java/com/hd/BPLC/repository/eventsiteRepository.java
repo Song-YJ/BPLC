@@ -99,15 +99,10 @@ public class eventsiteRepository {
     }
 
     public int getEventSearchTotallistnum(String gernename, String searchdata){
-        if(gernename.equals("all") || gernename.equals("event")) {
-            return jdbctemplate.queryForObject(
-                    "SELECT((SELECT count(*) FROM exhibition WHERE name LIKE \'%" + searchdata + "%\' OR start_date LIKE \'%" + searchdata + "%\' OR end_date LIKE \'%" + searchdata + "%\') + " +
-                            "(SELECT count(*) FROM festival WHERE name LIKE \'%" + searchdata + "%\' OR start_date LIKE \'%" + searchdata + "%\' OR end_date LIKE \'%" + searchdata + "%\'))",
-                    Integer.class
-            );
-        }
-        else {
-            return 0;
-        }
+        return jdbctemplate.queryForObject(
+                "SELECT((SELECT count(*) FROM exhibition WHERE name LIKE \'%" + searchdata + "%\' OR start_date LIKE \'%" + searchdata + "%\' OR end_date LIKE \'%" + searchdata + "%\') + " +
+                        "(SELECT count(*) FROM festival WHERE name LIKE \'%" + searchdata + "%\' OR start_date LIKE \'%" + searchdata + "%\' OR end_date LIKE \'%" + searchdata + "%\'))",
+                Integer.class
+        );
     }
 }

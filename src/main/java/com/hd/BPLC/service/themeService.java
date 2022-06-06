@@ -47,7 +47,8 @@ public class themeService {
             return result;
         }
         else {
-            return null;
+            result.setTotallistnum(repository.getThemeSearchTotallistnum(gernename, searchdata));
+            return result;
         }
     }
 }
