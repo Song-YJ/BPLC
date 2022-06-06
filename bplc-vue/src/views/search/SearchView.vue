@@ -72,7 +72,7 @@ export default defineComponent({
          },
         tripsitelistinfo: {
              totallistnum: 0,
-             category: "tripsite",
+             category: "tripsite", //이거 카테고리 sight, food 안그래도 괜찮겠지?
              lists: []
         },
         guidebooklistinfo: {
