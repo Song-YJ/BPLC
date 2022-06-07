@@ -1,5 +1,6 @@
 package com.hd.BPLC.controller;
 
+import com.hd.BPLC.domain.searchTripsiteList;
 import com.hd.BPLC.domain.theme;
 import com.hd.BPLC.domain.tripsiteDetail;
 import com.hd.BPLC.domain.tripsiteList;
@@ -97,8 +98,8 @@ public class tripsiteController {
 
     @GetMapping("/dao/search/tripsite")
     @ResponseBody
-    public tripsiteList getTripsiteSearch(@RequestParam(value="gernename")String gernename, @RequestParam(value="searchdata")String searchdata){
-        tripsiteList result = service.getTripsiteSearch(gernename, searchdata);
+    public searchTripsiteList getTripsiteSearch(@RequestParam(value="gernename")String gernename, @RequestParam(value="searchdata")String searchdata){
+        searchTripsiteList result = service.getTripsiteSearch(gernename, searchdata);
 
         return result;
     }

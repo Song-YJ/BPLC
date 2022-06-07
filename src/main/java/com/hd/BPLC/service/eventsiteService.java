@@ -2,6 +2,7 @@ package com.hd.BPLC.service;
 
 import com.hd.BPLC.domain.eventsiteDetail;
 import com.hd.BPLC.domain.eventsiteList;
+import com.hd.BPLC.domain.searchEventList;
 import com.hd.BPLC.repository.eventsiteRepository;
 
 import java.time.LocalDate;
@@ -70,8 +71,8 @@ public class eventsiteService {
         return result;
     }
 
-    public eventsiteList getEventSearch(String gernename, String searchdata){
-        eventsiteList result = new eventsiteList();
+    public searchEventList getEventSearch(String gernename, String searchdata){
+        searchEventList result = new searchEventList();
 
         if(gernename.equals("all") || gernename.equals("event")) {
             result.setTotallistnum(repository.getEventSearchTotallistnum(gernename, searchdata));

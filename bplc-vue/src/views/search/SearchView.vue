@@ -149,7 +149,7 @@ export default defineComponent({
           })
           .then(function (response) {
               tln = response.data.totallistnum;
-              ls = response.data.lists;
+              ls = response.data.list;
           })
           .catch(function (error) {
               console.log(error);

@@ -1,5 +1,6 @@
 package com.hd.BPLC.repository;
 
+import com.hd.BPLC.domain.searchTripsite;
 import com.hd.BPLC.domain.tripsiteDetail;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -28,13 +29,13 @@ public class tripsiteRepository {
         );
     }
 
-    public List<tripsiteDetail> getTripsiteSearchList(String gernename, String searchdata){
+    public List<searchTripsite> getTripsiteSearchList(String gernename, String searchdata){
         return jdbctemplate.query(
-            "SELECT id, name, address, photo_path FROM sight WHERE name LIKE \'%" + searchdata + "%\' OR address LIKE \'%" + searchdata + "%\'" +
-                    "UNION SELECT id, name, address, photo_path FROM food WHERE name LIKE \'%" + searchdata + "%\' OR address LIKE \'%" + searchdata + "%\'" +
-                    "UNION SELECT id, name, address, photo_path FROM hotel WHERE name LIKE \'%" + searchdata + "%\' OR address LIKE \'%" + searchdata + "%\'" +
-                    "UNION SELECT id, name, address, photo_path FROM entertainment WHERE name LIKE \'%" + searchdata + "%\' OR address LIKE \'%" + searchdata + "%\'",
-            summaryRowmapper()
+            "SELECT id, name, address, photo_path, \'sight\' as category FROM sight WHERE name LIKE \'%" + searchdata + "%\' OR address LIKE \'%" + searchdata + "%\'" +
+                    "UNION SELECT id, name, address, photo_path, \'food\' as category FROM food WHERE name LIKE \'%" + searchdata + "%\' OR address LIKE \'%" + searchdata + "%\'" +
+                    "UNION SELECT id, name, address, photo_path, \'hotel\' as category FROM hotel WHERE name LIKE \'%" + searchdata + "%\' OR address LIKE \'%" + searchdata + "%\'" +
+                    "UNION SELECT id, name, address, photo_path, \'entertainment\' as category FROM entertainment WHERE name LIKE \'%" + searchdata + "%\' OR address LIKE \'%" + searchdata + "%\'",
+                summarySearchRowmapper()
         );
     }
 
@@ -76,6 +77,19 @@ public class tripsiteRepository {
             object.setName(rs.getString("name"));
             object.setExplanation(rs.getString("address"));
             object.setPhotopath(rs.getString("photo_path"));
+
+            return object;
+        };
+    }
+
+    private RowMapper<searchTripsite> summarySearchRowmapper(){
+        return(rs, rowNum) -> {
+            searchTripsite object = new searchTripsite();
+            object.setId(rs.getString("id"));
+            object.setName(rs.getString("name"));
+            object.setExplanation(rs.getString("address"));
+            object.setPhotopath(rs.getString("photo_path"));
+            object.setCategory(rs.getString("category"));
 
             return object;
         };

@@ -1,23 +1,11 @@
 package com.hd.BPLC.domain;
 
-public class guidebookDetail{
+public class searchTripsite {
     private String id;
     private String name;
     private String explanation;
     private String photopath;
-    private String filename;
-    private String category = "guidebook";
-
-    public guidebookDetail(String id, String name, String explanation, String photopath, String filename) {
-        this.id = id;
-        this.name = name;
-        this.explanation = explanation;
-        this.photopath = photopath;
-        this.filename = filename;
-        this.category = "guidebook";
-    }
-
-    public String getCategory(){return this.category;}
+    private String category;
 
     public String getId() {
         return id;
@@ -51,11 +39,11 @@ public class guidebookDetail{
         this.photopath = photopath;
     }
 
-    public String getFilename() {
-        return filename;
+    public String getCategory() {
+        return category;
     }
 
-    public void setFilename(String filename) {
-        this.filename = filename;
+    public void setCategory(String catergory) {
+        this.category = catergory;
     }
 }

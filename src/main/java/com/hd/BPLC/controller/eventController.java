@@ -2,6 +2,7 @@ package com.hd.BPLC.controller;
 
 import com.hd.BPLC.domain.eventsiteDetail;
 import com.hd.BPLC.domain.eventsiteList;
+import com.hd.BPLC.domain.searchEventList;
 import com.hd.BPLC.service.eventsiteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -73,8 +74,8 @@ public class eventController {
 
     @GetMapping("/dao/search/event")
     @ResponseBody
-    public eventsiteList getEventSearch(@RequestParam(value="gernename")String gernename, @RequestParam(value="searchdata")String searchdata){
-        eventsiteList result = service.getEventSearch(gernename, searchdata);
+    public searchEventList getEventSearch(@RequestParam(value="gernename")String gernename, @RequestParam(value="searchdata")String searchdata){
+        searchEventList result = service.getEventSearch(gernename, searchdata);
 
         return result;
     }

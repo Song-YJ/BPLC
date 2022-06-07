@@ -1,8 +1,6 @@
 package com.hd.BPLC.service;
 
-import com.hd.BPLC.domain.theme;
-import com.hd.BPLC.domain.tripsiteDetail;
-import com.hd.BPLC.domain.tripsiteList;
+import com.hd.BPLC.domain.*;
 import com.hd.BPLC.repository.tripsiteRepository;
 
 public class tripsiteService {
@@ -135,12 +133,12 @@ public class tripsiteService {
         return result;
     }
 
-    public tripsiteList getTripsiteSearch(String gernename, String searchdata){
-        tripsiteList result = new tripsiteList();
+    public searchTripsiteList getTripsiteSearch(String gernename, String searchdata){
+        searchTripsiteList result = new searchTripsiteList();
 
         if(gernename.equals("all") || gernename.equals("tripsite")){
             result.setTotallistnum(repository.getTripsiteSearchTotallistnum(gernename, searchdata));
-            result.setLists(repository.getTripsiteSearchList(gernename, searchdata));
+            result.setList(repository.getTripsiteSearchList(gernename, searchdata));
 
             return result;
         }

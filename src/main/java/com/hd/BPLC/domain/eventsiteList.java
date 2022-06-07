@@ -8,9 +8,6 @@ public class eventsiteList {
     private String category;
     private List<eventsiteDetail> lists;
 
-    public eventsiteList(){
-
-    }
     public eventsiteList(String category){
         this.category = category;
     }

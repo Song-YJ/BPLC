@@ -1,6 +1,7 @@
 package com.hd.BPLC.repository;
 
 import com.hd.BPLC.domain.eventsiteDetail;
+import com.hd.BPLC.domain.searchEvent;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -41,12 +42,12 @@ public class eventsiteRepository {
     }
 
     //검색 결과
-    public List<eventsiteDetail> getEventSearch(String gernename, String searchdata){
+    public List<searchEvent> getEventSearch(String gernename, String searchdata){
         if(gernename.equals("all") || gernename.equals("event")) {
             return jdbctemplate.query(
-                    "SELECT id, name, start_date, end_date, photo_path FROM exhibition WHERE name LIKE \'%" + searchdata + "%\' OR start_date LIKE \'%" + searchdata + "%\' OR end_date LIKE \'%" + searchdata + "%\'" +
-                    "UNION SELECT id, name, start_date, end_date, photo_path FROM festival WHERE name LIKE \'%" + searchdata + "%\' OR start_date LIKE \'%" + searchdata + "%\' OR end_date LIKE \'%" + searchdata + "%\'",
-                    summaryRowmapper()
+                    "SELECT id, name, start_date, end_date, photo_path, \'exhibition\' AS category FROM exhibition WHERE name LIKE \'%" + searchdata + "%\' OR start_date LIKE \'%" + searchdata + "%\' OR end_date LIKE \'%" + searchdata + "%\'" +
+                    "UNION SELECT id, name, start_date, end_date, photo_path, \'festival\' AS category FROM festival WHERE name LIKE \'%" + searchdata + "%\' OR start_date LIKE \'%" + searchdata + "%\' OR end_date LIKE \'%" + searchdata + "%\'",
+                    summarySearchRowmapper()
             );
         }
         else {
@@ -87,6 +88,20 @@ public class eventsiteRepository {
 
             object.setExplanation();
 
+
+            return object;
+        };
+    }
+
+    private RowMapper<searchEvent> summarySearchRowmapper(){
+        return(rs, rowNum) -> {
+            searchEvent object = new searchEvent();
+            object.setId(rs.getString("id"));
+            object.setName(rs.getString("name"));
+            object.setStartdate(rs.getString("start_date"));
+            object.setEnddate(rs.getString("end_date"));
+            object.setPhotopath(rs.getString("photo_path"));
+            object.setCategory(rs.getString("category"));
 
             return object;
         };

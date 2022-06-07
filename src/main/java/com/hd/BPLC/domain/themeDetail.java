@@ -7,6 +7,7 @@ public class themeDetail {
     private String photopath;
     private String filename;
     private Integer likes;
+    private String category = "theme";
 
     public themeDetail(String id, String name, String explanation, String photopath, String filename, Integer likes) {
         this.id = id;
@@ -15,6 +16,7 @@ public class themeDetail {
         this.photopath = photopath;
         this.filename = filename;
         this.likes = likes;
+        this.category = "theme";
     }
 
     public String getId() {
@@ -63,5 +65,13 @@ public class themeDetail {
 
     public void setLikes(Integer likes) {
         this.likes = likes;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

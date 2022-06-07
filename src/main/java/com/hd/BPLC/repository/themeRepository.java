@@ -49,7 +49,7 @@ public class themeRepository {
     public List<themeDetail> getThemeSearch(String gernename, String searchdata){
         if(gernename.equals("all") || gernename.equals("theme")) {
             return jdbctemplate.query(
-                    "SELECT * FROM theme_course WHERE name LIKE \'%" + searchdata + "%\' OR explanation LIKE \'%" + searchdata + "%\'",
+                    "SELECT *, 'theme' AS category FROM theme_course WHERE name LIKE \'%" + searchdata + "%\' OR explanation LIKE \'%" + searchdata + "%\'",
                     summaryRowmapper()
             );
         }
