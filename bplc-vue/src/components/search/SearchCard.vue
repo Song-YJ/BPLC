@@ -10,7 +10,7 @@
     <swiper :style="{
         '--swiper-navigation-color': 'gray',
       }" :slidesPerView="4" :spaceBetween="20" :slidesPerGroup="4"
-    :loop="true" :navigation="true" :loopFillGroupWithBlank="true" :modules="modules" class="mySwiper">
+    :navigation="true" :modules="modules" class="mySwiper">
 
         <swiper-slide v-for="item in lists" :key="item.id">
             <div v-if="item.category === 'entertainment'">
@@ -132,7 +132,6 @@ export default defineComponent({
   },
   mounted(){
     this.getLists();
-
   },
   methods:{
     getLists: function(){
@@ -145,12 +144,6 @@ export default defineComponent({
                 element.photopath = imagepath[element.category][element.photopath].thumbnail
             }
         });
-
-        let nextbtn = document.getElementsByClassName('swiper-button-next');
-
-        if(nextbtn != null){
-            nextbtn.item(0).click();
-        }
     },
     detailClick: function(routename, idnum){
       this.$router.push({name: routename, params: {'id':String(idnum)}});
@@ -208,7 +201,7 @@ export default defineComponent({
 
 /*cards */
 .card{
-    width:90%;
+    width:17rem;
     height:300px;
     margin : 5% auto 4% auto;
 
