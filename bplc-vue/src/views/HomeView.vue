@@ -42,9 +42,8 @@ export default defineComponent({
 </script>
 
 <style scoped>
-#carouselExampleControls {
-  padding: 90px 0px 0px 0px;
-  width: 100%;
+#carouselExampleControls .w-100 {
+  height: 100vh;
 }
 
 template {

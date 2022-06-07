@@ -279,7 +279,7 @@ const routes: Array<RouteRecordRaw> = [
   //통합검색
   {
     path: '/search/',
-    redirect: {name:'SearchRoute', params:{'searchdata': String(''), gernename:'all'}}
+    redirect: {name:'SearchRoute', params:{'searchdata': String(' '), gernename:'all'}}
   },
   {
     path: '/search/:searchdata/:gernename',
