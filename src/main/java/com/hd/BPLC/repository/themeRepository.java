@@ -17,7 +17,7 @@ public class themeRepository {
     //모든 코스 가져오기
     public List<themeDetail> getThemeSummaryList(){
         return jdbctemplate.query(
-                "SELECT * FROM theme_course",
+                "SELECT * FROM theme_courses",
                 summaryRowmapper()
         );
     }
@@ -28,6 +28,8 @@ public class themeRepository {
 
         if(gernename == "가나다순")
             sortmethod = "name ASC";
+        else if(gernename == "등록순")
+            sortmethod = "id ASC";
         else
             sortmethod = "likes DESC";
 

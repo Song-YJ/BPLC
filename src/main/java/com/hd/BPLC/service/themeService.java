@@ -15,8 +15,8 @@ public class themeService {
         theme result = new theme();
 
         if(gernename.equals("all")){
-            String dbgernename = "all";
-            result.setTotallistnum(repository.getThemeTotallistnum());
+            String dbgernename = "등록순";
+            result.setTotallistnum(repository.getThemeTotallistnum(dbgernename));
             result.setLists(repository.getThemeSummaryList(dbgernename));
         }else{
             if(gernename.equals("Korean")){
